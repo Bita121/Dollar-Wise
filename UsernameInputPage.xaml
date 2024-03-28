@@ -1,0 +1,44 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.UsernameInputPage"
+             BackgroundColor="#457A40">
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label 
+            Text="Welcome to Dollar Wise!" FontAttributes="Bold"
+            TextColor="#FFD700"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,0,0,15" />
+        <Image Source="F:\Disertatie\Dollar Wise\Photos\SemnDolar.png" WidthRequest="250" HeightRequest="250" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,15" />
+        <Entry 
+            x:Name="UsernameEntry"
+            PlaceholderColor="#FFD700" FontAttributes="Bold"
+            TextColor="#FFD700" 
+            BackgroundColor="#457A40"
+            Placeholder="Enter your username"
+            Margin="15"
+            HeightRequest="40"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"/>
+
+        <Button
+            BackgroundColor="#FFD700"
+            TextColor="#457A40"
+            Text="Next" FontAttributes="Bold"
+            Clicked="NextButton_Click"
+            Margin="15"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
+
+        <!-- Error label container with fixed height -->
+        <Label x:Name="ErrorLabel"
+            Margin="0,5,0,0"   
+            TextColor="Red"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            IsVisible="False"
+            HeightRequest="20" />
+    </StackLayout>
+</ContentPage>
