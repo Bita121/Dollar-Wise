@@ -2,8 +2,8 @@
 {
     public class MainPageViewModel
     {
+        // Properties for binding data to the UI
         public string Username { get; }
-
         public string SelectedCurrency { get; }
 
         public MainPageViewModel(string username, string selectedCurrency)

@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Dollar_Wise.CurrencyInputPage">
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+             x:Class="Dollar_Wise.CurrencyInputPage"
+             BackgroundColor="#4E4E4E">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
         <Label 
-            Text="Select Your Currency" FontAttributes="Bold"
-            HorizontalOptions="Center" />
+            x:Name="LabelSelectCurrency"
+            Text="" FontAttributes="Bold"
+            FontSize="38"
+            TextColor="White"
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Margin="0,0,0,15"/>
+        <Image 
+             x:Name="pozabuton"
+             Source="plusbuttonbun.png"
+             HeightRequest="120"
+             WidthRequest="120"
+             VerticalOptions="Center"
+             HorizontalOptions="Center"
+             Opacity="0"
+             Margin="0,0,0,15">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OpenCurrencyPicker_Clicked"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+
         <Picker 
             x:Name="CurrencyPicker"
             HorizontalOptions="Center"
             FontAttributes="Bold"
-            Margin="15">
+            TextColor="White"
+            FontSize="32"
+            IsVisible="false"
+            HeightRequest="120" 
+            WidthRequest="120"
+            Margin="0,0,0,15"
+            SelectedIndexChanged="CurrencyPicker_SelectedIndexChanged">
             <Picker.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
                     <x:String>RON</x:String>
@@ -21,10 +48,16 @@
             </Picker.ItemsSource>
         </Picker>
         <Button 
-            Text="Finish"
+            x:Name="NextButton"
+            Text="Next"
+            BackgroundColor="#410F3C"
+            TextColor="White"
             FontAttributes="Bold"
             Clicked="FinishButton_Click"
-            Margin="15"
+            Margin="0,0,0,15"
+            HeightRequest="80" 
+            WidthRequest="210"
+            Opacity="0"
             HorizontalOptions="Center"/>
         <Label x:Name="ErrorLabel"
             TextColor="Red"
@@ -32,7 +65,8 @@
             HorizontalOptions="Center"
             VerticalOptions="Center"
             IsVisible="False"
-            HeightRequest="30" />
+            HeightRequest="30"
+            Margin="0,0,0,15"/>
 
     </StackLayout>
 </ContentPage>

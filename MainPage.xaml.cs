@@ -8,8 +8,13 @@ namespace Dollar_Wise
         {
             InitializeComponent();
 
+            // Set the binding context to the view model
             BindingContext = new MainPageViewModel(username, selectedCurrency);
         }
-    }
 
+        private void MenuButton_Clicked(object sender, EventArgs e)
+        {
+            // Handle menu button click
+        }
+    }
 }

@@ -49,14 +49,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\bancnota.png" />
+	  <None Remove="Resources\Images\plusbuttonbun.png" />
+	  <None Remove="Resources\Images\plusbuttonpurplegood.png" />
+	  <None Remove="Resources\Images\pozameniu.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="GetStartedPage.xaml.cs">
+	    <DependentUpon>GetStartedPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="ChooseUsernameInputPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CurrencyInputPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="UsernameInputPage.xaml">
+	  <MauiXaml Update="GetStartedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

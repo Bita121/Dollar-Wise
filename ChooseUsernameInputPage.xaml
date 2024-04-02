@@ -1,0 +1,66 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.ChooseUsernameInputPage"
+             BackgroundColor="#4E4E4E">
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="20">
+        <Label 
+            x:Name="LabelChooseUsername"
+            Text=""
+            FontAttributes="Bold"
+            FontSize="34                                                                        "
+            TextColor="White"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="0,0,0,15"/>
+
+        <Image 
+            x:Name="EntryImage"
+            Source="plusbuttonpurplegood.png"
+            HeightRequest="100"
+            WidthRequest="100"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Opacity="0"
+            Margin="0,0,0,15">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OpenEntryImage_Tapped"/>
+            </Image.GestureRecognizers>
+        </Image>
+
+        <Entry 
+            x:Name="EntryUsername"
+            Placeholder="Enter your username"
+            TextColor="White"
+            HeightRequest="50"
+            WidthRequest="210"
+            FontSize="18"
+            Margin="0,0,0,15"
+            IsVisible="false"
+            HorizontalOptions="Center"
+            Opacity="0"/>
+
+        <Button 
+            x:Name="ButtonNext"
+            Text="Next"
+            BackgroundColor="#410F3C"
+            TextColor="White"
+            FontAttributes="Bold"
+            Clicked="NextButton_Click"
+            Margin="0,0,0,15"
+            HeightRequest="80" 
+            WidthRequest="210"
+            HorizontalOptions="Center"
+            Opacity="0"/>
+
+        <Label 
+            x:Name="ErrorLabel"
+            TextColor="Red"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            IsVisible="False"
+            HeightRequest="30"
+            Margin="0,0,0,15"/>
+    </StackLayout>
+</ContentPage>

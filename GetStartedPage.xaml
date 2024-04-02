@@ -1,0 +1,40 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.UsernameInputPage"
+             BackgroundColor="#4E4E4E">
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label 
+            x:Name="WelcomeLabel"
+            Text=""
+            FontAttributes="Bold"
+            TextColor="White"
+            FontSize="32"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Margin="0,0,0,15" />
+        <Image 
+            x:Name="DollarImage"
+            Source="bancnota.png"
+            WidthRequest="350"
+            HeightRequest="350"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="0,0,0,15"
+            Opacity="0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="NextButton_Click" />
+            </Image.GestureRecognizers>
+        </Image>
+        <Label
+            x:Name="TapLabel"
+            Text="Tap the image to get started"
+            TextColor="#CD47BF"
+            FontSize="28"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            Margin="0,0,0,15"
+            Opacity="0" />
+    </StackLayout>
+</ContentPage>

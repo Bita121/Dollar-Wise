@@ -1,10 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Dollar_Wise.MainPage">
-    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-        <Label Text="Welcome to Dollar Wise!" HorizontalOptions="Center" />
-        <Label Text="{Binding Username}" HorizontalOptions="Center" />
-        <Label Text="{Binding SelectedCurrency}" HorizontalOptions="Center" />
+             x:Class="Dollar_Wise.MainPage"
+             BackgroundColor="#4E4E4E">
+
+    <!-- Main Content Container -->
+    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+        <!-- Header Section -->
+        <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="20">
+            <Label Text="Welcome to Dollar Wise!" HorizontalOptions="Center" FontSize="24" TextColor="White" />
+            <Label Text="{Binding Username}" HorizontalOptions="Center" FontSize="20" TextColor="White" />
+            <Label Text="{Binding SelectedCurrency}" HorizontalOptions="Center" FontSize="20" TextColor="White" />
+        </StackLayout>
+
+        <!-- Overview Section -->
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label Text="Overview Section" HorizontalOptions="Center" FontSize="20" TextColor="White" />
+            <!-- Add summary labels for expenses, incomes, budget, targets, goals -->
+        </StackLayout>
+
+        <!-- Detailed Sections -->
+        <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Padding="20">
+                <Label Text="Expenses Section" FontSize="20" TextColor="White" />
+                <!-- Add list or visualization for expenses -->
+                <Label Text="Incomes Section" FontSize="20" TextColor="White" />
+                <!-- Add list or visualization for incomes -->
+                <Label Text="Budget Section" FontSize="20" TextColor="White" />
+                <!-- Add visualization for budget -->
+                <Label Text="Financial Targets Section" FontSize="20" TextColor="White" />
+                <!-- Add list or visualization for financial targets -->
+                <Label Text="Financial Goals Section" FontSize="20" TextColor="White" />
+                <!-- Add list or visualization for financial goals -->
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Action Buttons/Navigation -->
+        <StackLayout VerticalOptions="End" HorizontalOptions="FillAndExpand" Padding="20">
+            <!-- Add buttons or links for user actions -->
+        </StackLayout>
+
     </StackLayout>
+
 </ContentPage>
