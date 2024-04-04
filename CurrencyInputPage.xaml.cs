@@ -11,7 +11,6 @@ namespace Dollar_Wise
         public CurrencyInputPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         protected override async void OnAppearing()
@@ -58,6 +57,7 @@ namespace Dollar_Wise
 
             // Proceed with navigation to ChooseUsernameInputPage with username
             string selectedCurrency = CurrencyPicker.SelectedItem?.ToString();
+            Preferences.Set("SelectedCurrency", selectedCurrency);
             await Navigation.PushAsync(new ChooseUsernameInputPage(selectedCurrency));
         }
 
@@ -79,5 +79,6 @@ namespace Dollar_Wise
             // Make the picker visible with the selected value
             CurrencyPicker.IsVisible = true;
         }
+
     }
 }

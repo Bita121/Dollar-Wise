@@ -16,6 +16,11 @@ namespace Dollar_Wise
             NavigationPage.SetHasNavigationBar(this, false);
             _selectedCurrency = selectedCurrency;
         }
+
+        public ChooseUsernameInputPage()
+        {
+            InitializeComponent();
+        }
         private async void OpenEntryImage_Tapped(object sender, EventArgs e)
         {
             // Hide the entry image
@@ -80,9 +85,11 @@ namespace Dollar_Wise
                 ErrorLabel.IsVisible = true;
                 return;
             }
+            Preferences.Set("Username", username);
 
             // Proceed with navigation to MainPage with both username and selected currency
-            await Navigation.PushAsync(new MainPage(username, _selectedCurrency));
+            await Shell.Current.GoToAsync("//MainPage");
         }
+
     }
 }

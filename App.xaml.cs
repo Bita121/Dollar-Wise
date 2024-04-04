@@ -7,7 +7,7 @@ public partial class App : Application
         InitializeComponent();
 
         // Set the initial page to UsernameInputPage
-        MainPage = new NavigationPage(new UsernameInputPage());
+        MainPage = new AppShell();
     }
 
 }

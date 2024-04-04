@@ -10,20 +10,24 @@ namespace Dollar_Wise
 
         public UsernameInputPage()
         {
-            InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            InitializeComponent();
+            
+
         }
 
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
-
+            NavigationPage.SetHasNavigationBar(this, false);
             // Check if the text animation has already been performed
             if (!isTextAnimated)
             {
                 await StartTextAnimation();
                 isTextAnimated = true;
             }
+
+            // Check if username and currency are stored
+            
         }
 
         private async Task StartTextAnimation()
@@ -46,7 +50,16 @@ namespace Dollar_Wise
         private async void NextButton_Click(object sender, EventArgs e)
         {
             // Navigate to the CurrencyInputPage
+            
             await Navigation.PushAsync(new CurrencyInputPage());
+            
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            // Prevent back button functionality
+            return true;
+        }
+
     }
 }
