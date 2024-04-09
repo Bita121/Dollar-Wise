@@ -28,7 +28,7 @@ namespace Dollar_Wise
             ExpensesListView.ItemsSource = expenses;
         }
 
-        private async void AddExpense_Clicked(object sender, EventArgs e)
+        private async void AddExpense_Tapped(object sender, EventArgs e)
         {
             // Create a new expense object
             var expense = new Expense();

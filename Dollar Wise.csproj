@@ -50,9 +50,11 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\bancnota.png" />
+	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\plusbuttonbun.png" />
 	  <None Remove="Resources\Images\plusbuttonpurplegood.png" />
 	  <None Remove="Resources\Images\pozameniu.jpg" />
+	  <None Remove="Resources\Images\pusculita.png" />
 	</ItemGroup>
 
 	<ItemGroup>

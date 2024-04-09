@@ -2,12 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollar_Wise.ExpensesPage"
-             Title="Expenses">
+             Title="Expenses"
+             BackgroundColor="#4E4E4E">
     <StackLayout Padding="20">
         <!-- Text for Recent Expenses -->
         <StackLayout Orientation="Horizontal">
-            <Label Text="Recent Expenses" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0"/>
-            <Image Source="add_icon.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="End" VerticalOptions="Center" TapGestureRecognizer_Tapped="AddExpense_Tapped"/>
+            <Label Text="Recent Expenses" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
+            <Image Source="plusbuttonbun.png" HeightRequest="65" WidthRequest="55" HorizontalOptions="EndAndExpand">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AddExpense_Tapped"/>
+            </Image.GestureRecognizers>
+            </Image>
         </StackLayout>
 
         <!-- List of Expenses -->
@@ -16,23 +21,23 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10" Spacing="10">
+                        <StackLayout Padding="10" Spacing="10" BackgroundColor="DimGray">
                             <!-- Expense Name -->
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="Start"/>
-                                <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" FontSize="Subtitle" HorizontalOptions="EndAndExpand"/>
+                                <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
+
                             </StackLayout>
                             <!-- Expense Details -->
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" FontSize="Subtitle" HorizontalOptions="StartAndExpand"/>
-                                <Label Text="{Binding Category, StringFormat='Category: {0:C}'}" FontSize="Subtitle" HorizontalOptions="End"/>
+                                <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
+                                <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
                             </StackLayout>
 
 
                             <!-- Edit and Delete Buttons -->
                             <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
-                                <Button Text="Edit" Clicked="EditExpense_Clicked"/>
-                                <Button Text="Delete" Clicked="DeleteExpense_Clicked"/>
+                                <Button Text="Edit" Clicked="EditExpense_Clicked" BackgroundColor="#410F3C"/>
+                                <Button Text="Delete" Clicked="DeleteExpense_Clicked" BackgroundColor="#410F3C"/>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>
