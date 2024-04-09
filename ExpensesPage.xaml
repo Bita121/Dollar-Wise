@@ -3,10 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollar_Wise.ExpensesPage"
              Title="ExpensesPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout Padding="20">
+        <!-- Add Expense Button -->
+        <Button Text="Add Expense" Clicked="AddExpense_Clicked" Margin="0,0,0,10"/>
+
+        <!-- List of Expenses -->
+        <ListView x:Name="ExpensesListView" ItemsSource="{Binding Expenses}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <Label Text="{Binding Name}" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" />
+                            <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" />
+                            <Label Text="{Binding Category}" />
+                            <!-- Add more labels for additional properties as needed -->
+                            <StackLayout Orientation="Vertical" Spacing="20">
+                                <Button Text="Edit" Clicked="EditExpense_Clicked"/>
+                                <Button Text="Delete" Clicked="DeleteExpense_Clicked"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

@@ -1,13 +1,26 @@
-﻿namespace Dollar_Wise;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using SQLitePCL;
+using Microsoft.Data.Sqlite;
+using System;
+using Dollar_Wise.Services;
+using System.IO;
 
-public partial class App : Application
+namespace Dollar_Wise
 {
-    public App()
+    public partial class App : Application
     {
-        InitializeComponent();
+        public static DatabaseService Database { get; private set; }
 
-        // Set the initial page to UsernameInputPage
-        MainPage = new AppShell();
+        public App()
+        {
+            InitializeComponent();
+
+            // Initialize the database service
+            Database = new DatabaseService();
+
+            MainPage = new AppShell();
+        }
     }
 
 }
