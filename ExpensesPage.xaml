@@ -1,22 +1,61 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollar_Wise.ExpensesPage"
              Title="Expenses"
              BackgroundColor="#4E4E4E">
     <StackLayout Padding="20">
-        <!-- Text for Recent Expenses -->
-        <StackLayout Orientation="Horizontal">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Filter Selection -->
+            <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="10">
+                <!-- Filter Picker -->
+                <Picker x:Name="FilterPicker" Title="Select Filter" SelectedIndexChanged="FilterPicker_SelectedIndexChanged">
+                    <Picker.ItemsSource>
+                        <x:String>Date</x:String>
+                        <x:String>Category</x:String>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <!-- Date Filter -->
+                <StackLayout x:Name="DateFilterLayout" IsVisible="False" Orientation="Horizontal" Spacing="10">
+                    <DatePicker x:Name="StartDatePicker" Format="yyyy-MM-dd" HorizontalOptions="StartAndExpand"  />
+                    <DatePicker x:Name="EndDatePicker" Format="yyyy-MM-dd"  HorizontalOptions="StartAndExpand"/>
+                </StackLayout>
+
+                <!-- Category Filter -->
+                <Picker x:Name="CategoryPicker" Title="Pick your category" IsVisible="False">
+                    <Picker.ItemsSource>
+                        <x:String>Food</x:String>
+                        <x:String>Transportation</x:String>
+                        <x:String>Entertainment</x:String>
+                        <x:String>Utilities</x:String>
+                        <x:String>Other</x:String>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+
+            <!-- Apply and Reset Filter Buttons -->
+            <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10">
+                <Button Text="Apply Filter" Clicked="ApplyFilter_Clicked" IsVisible="False" x:Name="ApplyFilterButton" HorizontalOptions="EndAndExpand"/>
+                <Button Text="Reset Filter" Clicked="ResetFilter_Clicked" IsVisible="False" x:Name="ResetFilterButton" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </Grid>
+
+        <StackLayout Orientation="Horizontal" >
             <Label Text="Recent Expenses" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
             <Image Source="plusbuttonbun.png" HeightRequest="65" WidthRequest="55" HorizontalOptions="EndAndExpand">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Tapped="AddExpense_Tapped"/>
-            </Image.GestureRecognizers>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddExpense_Tapped"/>
+                </Image.GestureRecognizers>
             </Image>
         </StackLayout>
 
         <!-- List of Expenses -->
-        <ListView x:Name="ExpensesListView" ItemsSource="{Binding Expenses}"
+        <ListView x:Name="ExpensesListView" ItemsSource="{Binding FilteredExpenses}"
                   SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -25,15 +64,12 @@
                             <!-- Expense Name -->
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
-
                             </StackLayout>
                             <!-- Expense Details -->
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
                                 <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
                             </StackLayout>
-
-
                             <!-- Edit and Delete Buttons -->
                             <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
                                 <Button Text="Edit" Clicked="EditExpense_Clicked" BackgroundColor="#410F3C"/>
