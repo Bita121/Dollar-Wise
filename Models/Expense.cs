@@ -9,7 +9,7 @@ namespace Dollar_Wise.Models
 {
     public class Expense
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement] 
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Amount { get; set; }

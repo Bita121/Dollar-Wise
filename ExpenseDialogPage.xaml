@@ -1,0 +1,30 @@
+<!-- ExpenseDialogPage.xaml -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.ExpenseDialogPage"
+             Title="Add Expense">
+    <StackLayout HorizontalOptions="Center" Spacing="15" VerticalOptions="CenterAndExpand">
+        <Label Text="Enter expense name:" />
+        <Entry x:Name="NameEntry" Placeholder="Expense name" />
+
+        <Label Text="Enter expense amount:" />
+        <Entry x:Name="AmountEntry" Placeholder="Expense amount" Keyboard="Numeric" />
+
+        <Label Text="Enter expense date:" />
+        <DatePicker x:Name="DatePicker" />
+
+        <Label Text="Select expense category:" />
+        <Picker x:Name="CategoryPicker">
+            <Picker.ItemsSource>
+                <x:String>Food</x:String>
+                <x:String>Transportation</x:String>
+                <x:String>Entertainment</x:String>
+                <x:String>Utilities</x:String>
+                <x:String>Investments</x:String>
+                <x:String>Other</x:String>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Button Text="Save Expense" Clicked="SaveExpense_Clicked" />
+    </StackLayout>
+</ContentPage>
