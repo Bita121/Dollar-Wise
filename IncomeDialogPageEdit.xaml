@@ -1,0 +1,29 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.IncomeDialogPageEdit"
+             Title="Edit Income"
+             BackgroundColor="#4E4E4E">
+    <StackLayout HorizontalOptions="Center" Spacing="15" VerticalOptions="CenterAndExpand">
+        <Label Text="Enter income name:" TextColor="White" />
+        <Entry x:Name="NameEntry" Placeholder="Income name" TextColor="White" />
+
+        <Label Text="Enter income amount:" TextColor="White"/>
+        <Entry x:Name="AmountEntry" Placeholder="Income amount" Keyboard="Numeric" TextColor="White" />
+
+        <Label Text="Enter income date:" TextColor="White" />
+        <DatePicker x:Name="DatePicker" TextColor="White" />
+
+        <Label Text="Select income category:" TextColor="White"/>
+        <Picker x:Name="CategoryPicker" TextColor="White">
+            <Picker.ItemsSource>
+                <x:String>Salary</x:String>
+                <x:String>Freelance</x:String>
+                <x:String>Investment</x:String>
+                <x:String>Gift</x:String>
+                <x:String>Other</x:String>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Button Text="Save Income" Clicked="SaveIncome_Clicked" />
+    </StackLayout>
+</ContentPage>
