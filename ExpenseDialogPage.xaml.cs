@@ -35,9 +35,9 @@ namespace Dollar_Wise
             }
 
             decimal amountValue;
-            if (string.IsNullOrWhiteSpace(amount) || !decimal.TryParse(amount, out amountValue))
+            if (string.IsNullOrWhiteSpace(amount) || !decimal.TryParse(amount, out amountValue) || amountValue <= 0)
             {
-                await DisplayAlert("Error", "Invalid amount format.", "OK");
+                await DisplayAlert("Error", "Invalid amount format or amount is negative.", "OK");
                 return;
             }
 

@@ -20,7 +20,7 @@ namespace Dollar_Wise
             InitializeComponent();
             _dataService = new DataService(App.Database);
             LoadExpenses();
-            FilterPicker.ItemsSource = new List<string> { "Date", "Category"};
+            FilterPicker.ItemsSource = new List<string> { "Date", "Category" };
             CategoryPicker.ItemsSource = new List<string> { "Food", "Transportation", "Entertainment", "Utilities", "Investments", "Other" };
         }
 
@@ -29,10 +29,21 @@ namespace Dollar_Wise
             // Await the asynchronous operation to get expenses
             _allExpenses = await _dataService.GetExpenses();
 
-            // Set the ItemsSource property with the result
+            // Apply filters if they were previously selected
+            if (_isCategoryFilterVisible && CategoryPicker.SelectedItem is string selectedCategory)
+            {
+                _allExpenses = _allExpenses.Where(expense => expense.Category == selectedCategory).ToList();
+            }
+            if (_isDateFilterVisible)
+            {
+                DateTime startDate = StartDatePicker.Date;
+                DateTime endDate = EndDatePicker.Date;
+                _allExpenses = _allExpenses.Where(expense => expense.Date >= startDate && expense.Date <= endDate).ToList();
+            }
+
+            // Set the ItemsSource property with the filtered result
             ExpensesListView.ItemsSource = _allExpenses;
         }
-        
 
         private async void FilterPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -63,6 +74,7 @@ namespace Dollar_Wise
             ApplyFilterButton.IsVisible = _isDateFilterVisible || _isCategoryFilterVisible;
             ResetFilterButton.IsVisible = _isDateFilterVisible || _isCategoryFilterVisible;
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -78,6 +90,11 @@ namespace Dollar_Wise
             DateTime startDate = StartDatePicker.Date;
             DateTime endDate = EndDatePicker.Date;
 
+            // Store applied filter parameters
+            string previousSelectedCategory = selectedCategory;
+            DateTime previousStartDate = startDate;
+            DateTime previousEndDate = endDate;
+
             // Apply filters
             IEnumerable<Expense> filteredExpenses = _allExpenses;
             if (_isCategoryFilterVisible && selectedCategory != null)
@@ -91,6 +108,9 @@ namespace Dollar_Wise
 
             // Update ListView with filtered data
             ExpensesListView.ItemsSource = filteredExpenses;
+
+            // Store applied filter parameters for reapplication after editing or deleting
+            ApplyFilterButton.CommandParameter = (previousSelectedCategory, previousStartDate, previousEndDate);
         }
 
         private async void ResetFilter_Clicked(object sender, EventArgs e)
@@ -122,6 +142,18 @@ namespace Dollar_Wise
             if (expense != null)
             {
                 await Navigation.PushAsync(new ExpenseDialogPageEdit(expense));
+
+                // Reload expenses after editing
+                LoadExpenses();
+
+                // Reapply filters if they were previously applied
+                if (ApplyFilterButton.CommandParameter is (string selectedCategory, DateTime startDate, DateTime endDate))
+                {
+                    CategoryPicker.SelectedItem = selectedCategory;
+                    StartDatePicker.Date = startDate;
+                    EndDatePicker.Date = endDate;
+                    ApplyFilter_Clicked(null, null);
+                }
             }
         }
 
@@ -142,6 +174,15 @@ namespace Dollar_Wise
 
                     // Refresh the expenses list
                     LoadExpenses();
+
+                    // Reapply filters if they were previously applied
+                    if (ApplyFilterButton.CommandParameter is (string selectedCategory, DateTime startDate, DateTime endDate))
+                    {
+                        CategoryPicker.SelectedItem = selectedCategory;
+                        StartDatePicker.Date = startDate;
+                        EndDatePicker.Date = endDate;
+                        ApplyFilter_Clicked(null, null);
+                    }
                 }
             }
         }

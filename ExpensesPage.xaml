@@ -13,7 +13,7 @@
             <!-- Filter Selection -->
             <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="10">
                 <!-- Filter Picker -->
-                <Picker x:Name="FilterPicker" Title="Select Filter" SelectedIndexChanged="FilterPicker_SelectedIndexChanged">
+                <Picker x:Name="FilterPicker" Title="Select Filter" SelectedIndexChanged="FilterPicker_SelectedIndexChanged" TextColor="White" TitleColor="White" HorizontalOptions="Start" >
                     <Picker.ItemsSource>
                         <x:String>Date</x:String>
                         <x:String>Category</x:String>
@@ -22,12 +22,12 @@
 
                 <!-- Date Filter -->
                 <StackLayout x:Name="DateFilterLayout" IsVisible="False" Orientation="Horizontal" Spacing="10">
-                    <DatePicker x:Name="StartDatePicker" Format="yyyy-MM-dd" HorizontalOptions="StartAndExpand"  />
-                    <DatePicker x:Name="EndDatePicker" Format="yyyy-MM-dd"  HorizontalOptions="StartAndExpand"/>
+                    <DatePicker x:Name="StartDatePicker" Format="yyyy-MM-dd" HorizontalOptions="Start" TextColor="White"  />
+                    <DatePicker x:Name="EndDatePicker" Format="yyyy-MM-dd"  HorizontalOptions="StartAndExpand" TextColor="White"/>
                 </StackLayout>
 
                 <!-- Category Filter -->
-                <Picker x:Name="CategoryPicker" Title="Pick your category" IsVisible="False">
+                <Picker x:Name="CategoryPicker" Title="Pick your category" IsVisible="False" TextColor="White" TitleColor="White" HorizontalOptions="Start">
                     <Picker.ItemsSource>
                         <x:String>Food</x:String>
                         <x:String>Transportation</x:String>
@@ -45,40 +45,48 @@
             </StackLayout>
         </Grid>
 
-        <StackLayout Orientation="Horizontal" >
-            <Label Text="Recent Expenses" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
-            <Image Source="plusbuttonbun.png" HeightRequest="65" WidthRequest="55" HorizontalOptions="EndAndExpand">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="AddExpense_Tapped"/>
-                </Image.GestureRecognizers>
-            </Image>
+        <StackLayout Orientation="Horizontal" Padding="5">
+            <Label Text="Recent Expenses:" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
         </StackLayout>
 
         <!-- List of Expenses -->
         <ListView x:Name="ExpensesListView" ItemsSource="{Binding FilteredExpenses}"
-                  SeparatorVisibility="None" HasUnevenRows="True">
+          SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10" Spacing="10" BackgroundColor="DimGray">
-                            <!-- Expense Name -->
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
-                            </StackLayout>
-                            <!-- Expense Details -->
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Amount, StringFormat='Amount: {0:C}'}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
-                                <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
-                            </StackLayout>
-                            <!-- Edit and Delete Buttons -->
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
-                                <Button Text="Edit" Clicked="EditExpense_Clicked" BackgroundColor="#410F3C"/>
-                                <Button Text="Delete" Clicked="DeleteExpense_Clicked" BackgroundColor="#410F3C"/>
-                            </StackLayout>
+                        <StackLayout Margin="0,0,0,5">
+                            <Border Stroke="#410F3C" StrokeThickness="4">
+                                <StackLayout Spacing="4" BackgroundColor="DimGray">
+                                    <!-- Expense Item -->
+                                    <!-- Expense Name -->
+                                    <StackLayout Orientation="Horizontal" Padding="8">
+                                        <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
+                                        <Label Text="{Binding AmountFormatted, StringFormat='-{0}'}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkRed"/>
+                                    </StackLayout>
+                                    <!-- Expense Details -->
+                                    <StackLayout Orientation="Horizontal" Padding="8">
+                                        <Label Text="{Binding Category}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
+                                        <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
+                                    </StackLayout>
+                                    <!-- Edit and Delete Buttons -->
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="5" Padding="8">
+                                        <Button Text="Edit" Clicked="EditExpense_Clicked" BackgroundColor="#410F3C"/>
+                                        <Button Text="Delete" Clicked="DeleteExpense_Clicked" BackgroundColor="#410F3C"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Border>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+
+        <Image Source="plusbuttonbun.png" HeightRequest="65" WidthRequest="55" HorizontalOptions="EndAndExpand">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AddExpense_Tapped"/>
+            </Image.GestureRecognizers>
+        </Image>
     </StackLayout>
 </ContentPage>

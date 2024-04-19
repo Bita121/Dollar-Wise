@@ -2,19 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollar_Wise.ExpenseDialogPage"
-             Title="Add Expense">
+             Title="Add Expense"
+             BackgroundColor="#4E4E4E">
     <StackLayout HorizontalOptions="Center" Spacing="15" VerticalOptions="CenterAndExpand">
-        <Label Text="Enter expense name:" />
-        <Entry x:Name="NameEntry" Placeholder="Expense name" />
+        <Label Text="Enter expense name:" TextColor="White"/>
+        <Entry x:Name="NameEntry" Placeholder="Expense name" TextColor="White"/>
 
-        <Label Text="Enter expense amount:" />
-        <Entry x:Name="AmountEntry" Placeholder="Expense amount" Keyboard="Numeric" />
+        <Label Text="Enter expense amount:" TextColor="White"/>
+        <Entry x:Name="AmountEntry" Placeholder="Expense amount" Keyboard="Numeric" TextColor="White"/>
 
-        <Label Text="Enter expense date:" />
-        <DatePicker x:Name="DatePicker" />
+        <Label Text="Enter expense date:" TextColor="White"/>
+        <DatePicker x:Name="DatePicker" TextColor="White" />
 
-        <Label Text="Select expense category:" />
-        <Picker x:Name="CategoryPicker">
+        <Label Text="Select expense category:" TextColor="White"/>
+        <Picker x:Name="CategoryPicker" TextColor="White">
             <Picker.ItemsSource>
                 <x:String>Food</x:String>
                 <x:String>Transportation</x:String>
