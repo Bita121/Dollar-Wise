@@ -11,15 +11,15 @@ namespace Dollar_Wise.Services
 
         public DatabaseService()
         {
-            // Specify the path for the SQLite database file
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyDatabase.db3");
-
-            // Initialize SQLite connection
             _database = new SQLiteAsyncConnection(dbPath);
 
-            // Create tables if they don't exist
+            // creating tables if they don t exist
             _database.CreateTableAsync<Expense>().Wait();
             _database.CreateTableAsync<Income>().Wait();
+            _database.CreateTableAsync<Goal>().Wait();
+            _database.CreateTableAsync<RecurringPayment>().Wait();
+            _database.CreateTableAsync<RecurringPaymentExpenseLink>().Wait();
         }
 
         public SQLiteAsyncConnection GetDatabaseConnection()

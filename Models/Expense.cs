@@ -1,9 +1,5 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dollar_Wise.Models
 {
@@ -27,17 +23,17 @@ namespace Dollar_Wise.Models
 
         private string GetFormattedAmount()
         {
-            // Get the currency symbol based on the selected currency
+            // get currency based on set preferences
             string currencySymbol = GetCurrencySymbol(Preferences.Get("SelectedCurrency", "USD"));
 
-            // Format the amount with the currency symbol
+
             switch (Preferences.Get("SelectedCurrency", "USD"))
             {
                 case "EUR":
                     return $"{Amount} €";
                 case "RON":
                     return $"{Amount} RON";
-                default: // USD or other default to $
+                default: 
                     return $"${Amount}";
             }
         }
@@ -50,7 +46,7 @@ namespace Dollar_Wise.Models
                     return "€";
                 case "RON":
                     return "RON";
-                default: // USD or other default to $
+                default: 
                     return "$";
             }
         }

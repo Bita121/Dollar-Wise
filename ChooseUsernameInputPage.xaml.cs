@@ -23,19 +23,14 @@ namespace Dollar_Wise
         }
         private async void OpenEntryImage_Tapped(object sender, EventArgs e)
         {
-            // Hide the entry image
             EntryImage.Opacity = 0;
             EntryImage.IsVisible = false;
 
-            // Prompt the user to enter their username
             string username = await DisplayPromptAsync("Enter Username", "Please enter your username:");
 
-            // Check if the username is provided
             if (!string.IsNullOrWhiteSpace(username))
             {
                 EntryUsername.Text = username;
-
-                // Show the entry and button
                 EntryUsername.IsVisible = true;
                 EntryUsername.Opacity = 1;
                 ButtonNext.Opacity = 1;
@@ -46,8 +41,6 @@ namespace Dollar_Wise
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            // Check if the text animation has already been performed
             if (!_isTextAnimated)
             {
                 await StartTextAnimation();
@@ -57,18 +50,17 @@ namespace Dollar_Wise
 
         private async Task StartTextAnimation()
         {
-            // Text animation for "Choose Username"
+            // animation for text
             string welcomeText = "Choose Your Username";
             foreach (char letter in welcomeText)
             {
                 LabelChooseUsername.Text += letter;
-                await Task.Delay(100); // Adjust the delay as needed
+                await Task.Delay(100);
             }
 
-            // Show the entry image after text animation completes
+   
             EntryImage.IsVisible = true;
 
-            // Fade in animation for entry image
             await Task.WhenAll(
                 EntryImage.FadeTo(1, 1000),
                 ButtonNext.FadeTo(1, 1000)
@@ -87,7 +79,6 @@ namespace Dollar_Wise
             }
             Preferences.Set("Username", username);
 
-            // Proceed with navigation to MainPage with both username and selected currency
             await Shell.Current.GoToAsync("//MainPage");
         }
 

@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.Goals.GoalDialogPage"
+             Title="Add Goal"
+             BackgroundColor="#4E4E4E">
+    <StackLayout HorizontalOptions="Center" Spacing="15" VerticalOptions="CenterAndExpand">
+        <Label Text="Enter goal name:" TextColor="White"/>
+        <Entry x:Name="NameEntry" Placeholder="Goal name" TextColor="White"/>
+
+        <Label Text="Enter target amount:" TextColor="White"/>
+        <Entry x:Name="TargetAmountEntry" Placeholder="Target amount" Keyboard="Numeric" TextColor="White"/>
+
+        <Label Text="Select target date:" TextColor="White"/>
+        <DatePicker x:Name="DatePicker" TextColor="White" />
+
+        <Label Text="Select priority:" TextColor="White"/>
+        <Picker x:Name="PriorityPicker" TextColor="White">
+            <Picker.ItemsSource>
+                <x:String>High</x:String>
+                <x:String>Medium</x:String>
+                <x:String>Low</x:String>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Button Text="Save Goal" Clicked="SaveGoal_Clicked" />
+    </StackLayout>
+</ContentPage>

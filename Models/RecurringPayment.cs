@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace Dollar_Wise.Models
 {
-    public class Income
+    public class RecurringPayment
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Amount { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime StartingDate { get; set; }
+        public RecurrenceFrequency Frequency { get; set; }
         public string Category { get; set; }
+        public bool IsActive { get; set; } 
 
         [Ignore]
         public string AmountFormatted
@@ -27,9 +29,8 @@ namespace Dollar_Wise.Models
 
         private string GetFormattedAmount()
         {
-            // get currenct from set preferences
+            // get currency based on set preferences
             string currencySymbol = GetCurrencySymbol(Preferences.Get("SelectedCurrency", "USD"));
-
 
             switch (Preferences.Get("SelectedCurrency", "USD"))
             {
@@ -54,5 +55,16 @@ namespace Dollar_Wise.Models
                     return "$";
             }
         }
+    }
+
+
+    public enum RecurrenceFrequency
+    {
+        Daily,
+        Weekly,
+        Monthly,
+        Quarterly,
+        SemiAnnually,
+        Annually
     }
 }

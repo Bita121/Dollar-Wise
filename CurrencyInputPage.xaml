@@ -44,7 +44,6 @@
                     <x:String>RON</x:String>
                     <x:String>USD</x:String>
                     <x:String>EUR</x:String>
-                    <!-- Add other currency options here -->
                 </x:Array>
             </Picker.ItemsSource>
         </Picker>

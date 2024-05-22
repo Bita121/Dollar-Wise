@@ -15,10 +15,7 @@ namespace Dollar_Wise
         public App()
         {
             InitializeComponent();
-
-            // Initialize the database service
             Database = new DatabaseService();
-
             MainPage = new AppShell();
         }
     }

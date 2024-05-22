@@ -1,34 +1,60 @@
-﻿using Microsoft.Maui.Controls;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Maui.Controls;
+using Microcharts;
+using System.Linq;
+using Microcharts.Maui;
+using SkiaSharp;
 
 namespace Dollar_Wise
 {
     public partial class MainPage : ContentPage
     {
+        private readonly MainPageViewModel ViewModel;
 
         public MainPage(string username, string selectedCurrency)
         {
             InitializeComponent();
 
-            // Set the binding context to the view model
-            BindingContext = new MainPageViewModel(username, selectedCurrency);
+            ViewModel = new MainPageViewModel(username, selectedCurrency);
+            BindingContext = ViewModel;
+
+            ViewModel.ExpenseButtonColor = Color.FromHex("#2196F3");
+            ViewModel.IncomeButtonColor = Color.FromHex("#A9A9A9");
+
+            // Initially display expenses chart
+            ViewModel.UpdatePieChartWithExpensesAsync(UpdatePieChart);
         }
-        public MainPage()
+
+        public MainPage() : this(Preferences.Get("Username", null), Preferences.Get("SelectedCurrency", null))
         {
-            InitializeComponent();
-            string username = Preferences.Get("Username", null);
-            string selectedCurrency = Preferences.Get("SelectedCurrency", null);
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(selectedCurrency))
+            if (string.IsNullOrEmpty(ViewModel.Username) || string.IsNullOrEmpty(ViewModel.SelectedCurrency))
             {
-                // Navigate to the UsernameInputPage if either username or selected currency is null
                 Navigation.PushAsync(new UsernameInputPage());
             }
-            else
-            {
-                // Set the binding context to the view model
-                BindingContext = new MainPageViewModel(username, selectedCurrency);
-            }
-
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await ViewModel.UpdatePieChartWithExpensesAsync(UpdatePieChart);
+        }
+
+        private async void OnExpensesClicked(object sender, EventArgs e)
+        {
+            await ViewModel.UpdatePieChartWithExpensesAsync(UpdatePieChart);
+        }
+
+        private async void OnIncomesClicked(object sender, EventArgs e)
+        {
+            await ViewModel.UpdatePieChartWithIncomesAsync(UpdatePieChart);
+        }
+
+        private void UpdatePieChart(List<ChartEntry> entries)
+        {
+            var chart = new DonutChart { Entries = entries, BackgroundColor = SKColors.DarkGray, LabelMode = LabelMode.LeftAndRight, LabelTextSize=40f};
+            PieChartView.Chart = chart;
+
+        }
     }
 }

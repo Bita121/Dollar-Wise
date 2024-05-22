@@ -50,14 +50,22 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\bancnota.png" />
+	  <None Remove="Resources\Images\entertainment_icon.png" />
+	  <None Remove="Resources\Images\food_icon.png" />
 	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\investments_icon.png" />
+	  <None Remove="Resources\Images\other_icon.png" />
 	  <None Remove="Resources\Images\plusbuttonbun.png" />
 	  <None Remove="Resources\Images\plusbuttonpurplegood.png" />
 	  <None Remove="Resources\Images\pozameniu.jpg" />
 	  <None Remove="Resources\Images\pusculita.png" />
+	  <None Remove="Resources\Images\pusculitaGoal.png" />
+	  <None Remove="Resources\Images\transportation_icon.png" />
+	  <None Remove="Resources\Images\utilities_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microcharts.Maui" Version="1.0.0" />
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="SQLite" Version="3.13.0" />
@@ -88,7 +96,16 @@
 	  <MauiXaml Update="ExpensesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="FinancialGoals.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="GetStartedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Goals\GoalDialogPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Goals\GoalDialogPageEdit.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="IncomeDialogPage.xaml">
@@ -98,6 +115,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="IncomesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="RecurringPaymentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="RecurringPayments\RecurringPaymentDialogPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="RecurringPayments\RecurringPaymentDialogPageEdit.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

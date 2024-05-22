@@ -26,10 +26,9 @@ namespace Dollar_Wise
 
         private async void LoadExpenses()
         {
-            // Await the asynchronous operation to get expenses
             _allExpenses = await _dataService.GetExpenses();
 
-            // Apply filters if they were previously selected
+            // apply filters if they were previously selected
             if (_isCategoryFilterVisible && CategoryPicker.SelectedItem is string selectedCategory)
             {
                 _allExpenses = _allExpenses.Where(expense => expense.Category == selectedCategory).ToList();
@@ -40,8 +39,6 @@ namespace Dollar_Wise
                 DateTime endDate = EndDatePicker.Date;
                 _allExpenses = _allExpenses.Where(expense => expense.Date >= startDate && expense.Date <= endDate).ToList();
             }
-
-            // Set the ItemsSource property with the filtered result
             ExpensesListView.ItemsSource = _allExpenses;
         }
 
@@ -78,24 +75,19 @@ namespace Dollar_Wise
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            // Reload expenses when the ExpensesPage is shown again
             LoadExpenses();
         }
 
         private async void ApplyFilter_Clicked(object sender, EventArgs e)
         {
-            // Get selected category and date range
             string selectedCategory = CategoryPicker.SelectedItem as string;
             DateTime startDate = StartDatePicker.Date;
             DateTime endDate = EndDatePicker.Date;
 
-            // Store applied filter parameters
             string previousSelectedCategory = selectedCategory;
             DateTime previousStartDate = startDate;
             DateTime previousEndDate = endDate;
 
-            // Apply filters
             IEnumerable<Expense> filteredExpenses = _allExpenses;
             if (_isCategoryFilterVisible && selectedCategory != null)
             {
@@ -106,16 +98,12 @@ namespace Dollar_Wise
                 filteredExpenses = filteredExpenses.Where(expense => expense.Date >= startDate && expense.Date <= endDate);
             }
 
-            // Update ListView with filtered data
             ExpensesListView.ItemsSource = filteredExpenses;
-
-            // Store applied filter parameters for reapplication after editing or deleting
             ApplyFilterButton.CommandParameter = (previousSelectedCategory, previousStartDate, previousEndDate);
         }
 
         private async void ResetFilter_Clicked(object sender, EventArgs e)
         {
-            // Reset filter options
             FilterPicker.SelectedItem = null;
             CategoryPicker.SelectedItem = null;
             StartDatePicker.Date = DateTime.Today;
@@ -123,8 +111,6 @@ namespace Dollar_Wise
             _isDateFilterVisible = false;
             _isCategoryFilterVisible = false;
             UpdateFilterVisibility();
-
-            // Reload all expenses
             LoadExpenses();
         }
 
@@ -136,17 +122,14 @@ namespace Dollar_Wise
 
         private async void EditExpense_Clicked(object sender, EventArgs e)
         {
-            // Get the selected expense from the ListView
             var button = sender as Button;
             var expense = button?.BindingContext as Expense;
             if (expense != null)
             {
                 await Navigation.PushAsync(new ExpenseDialogPageEdit(expense));
-
-                // Reload expenses after editing
                 LoadExpenses();
 
-                // Reapply filters if they were previously applied
+                // reapply filters if they were previously applied
                 if (ApplyFilterButton.CommandParameter is (string selectedCategory, DateTime startDate, DateTime endDate))
                 {
                     CategoryPicker.SelectedItem = selectedCategory;
@@ -159,20 +142,15 @@ namespace Dollar_Wise
 
         private async void DeleteExpense_Clicked(object sender, EventArgs e)
         {
-            // Get the selected expense from the ListView
             var button = sender as Button;
             var expense = button?.BindingContext as Expense;
 
             if (expense != null)
             {
-                // Confirm deletion with an alert dialog
                 var result = await DisplayAlert("Delete Expense", $"Are you sure you want to delete '{expense.Name}'?", "Yes", "No");
                 if (result)
                 {
-                    // Delete the expense from the database
                     await _dataService.DeleteExpense(expense);
-
-                    // Refresh the expenses list
                     LoadExpenses();
 
                     // Reapply filters if they were previously applied

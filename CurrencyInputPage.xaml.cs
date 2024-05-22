@@ -16,8 +16,6 @@ namespace Dollar_Wise
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            // Check if the text animation has already been performed
             if (!isTextAnimated)
             {
                 await StartTextAnimation();
@@ -27,19 +25,15 @@ namespace Dollar_Wise
 
         private async Task StartTextAnimation()
         {
-            // Text animation for "Select Your Currency"
             string welcomeText = "Select Your Currency";
             foreach (char letter in welcomeText)
             {
                 LabelSelectCurrency.Text += letter;
-                await Task.Delay(100); // Adjust the delay as needed
+                await Task.Delay(100);
             }
-
-            // Show the image and button after text animation completes
             pozabuton.IsVisible = true;
             NextButton.IsVisible = true;
 
-            // Fade in animation for image and button
             await Task.WhenAll(
                 pozabuton.FadeTo(1, 1000),
                 NextButton.FadeTo(1, 1000)
@@ -55,7 +49,6 @@ namespace Dollar_Wise
                 return;
             }
 
-            // Proceed with navigation to ChooseUsernameInputPage with username
             string selectedCurrency = CurrencyPicker.SelectedItem?.ToString();
             Preferences.Set("SelectedCurrency", selectedCurrency);
             await Navigation.PushAsync(new ChooseUsernameInputPage(selectedCurrency));
@@ -66,17 +59,13 @@ namespace Dollar_Wise
             var result = await DisplayActionSheet("Select Currency", "Cancel", null, "RON", "USD", "EUR");
             if (result != "Cancel" && !string.IsNullOrEmpty(result))
             {
-                // Update the picker value based on the selected currency
                 CurrencyPicker.SelectedItem = result;
             }
         }
 
         private void CurrencyPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Hide the image once a value is selected in the picker
             pozabuton.IsVisible = false;
-
-            // Make the picker visible with the selected value
             CurrencyPicker.IsVisible = true;
         }
 

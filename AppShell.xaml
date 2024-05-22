@@ -28,7 +28,20 @@
             Route="IncomesPage" />
     </FlyoutItem>
 
-    <!-- Customize flyout menu item appearance -->
+    <FlyoutItem Title="Goals" Icon="pusculitagoal.png">
+        <ShellContent
+            Title="Goals"
+            ContentTemplate="{DataTemplate local:FinancialGoals}"
+            Route="FinancialGoals" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Recurring Payments" Icon="pusculitagoal.png">
+        <ShellContent
+            Title="Recurring Payments"
+            ContentTemplate="{DataTemplate local:RecurringPaymentPage}"
+            Route="Recurring Payments" />
+    </FlyoutItem>
+
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid Padding="10" ColumnSpacing="10">
@@ -37,7 +50,6 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Image Source="{Binding FlyoutIcon}" WidthRequest="45" HeightRequest="45" />
-                <!-- Remove the BoxView -->
                 <Label Text="{Binding Title}" TextColor="White" Grid.Column="1" VerticalOptions="Center" FontSize="18" FontAttributes="Bold" />
             </Grid>
         </DataTemplate>

@@ -1,0 +1,34 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.RecurringPayments.RecurringPaymentDialogPage"
+             Title="Add Recurring Payment"
+             BackgroundColor="#4E4E4E">
+    <StackLayout HorizontalOptions="Center" Spacing="15" VerticalOptions="CenterAndExpand">
+        <Label Text="Enter recurring payment name:" TextColor="White"/>
+        <Entry x:Name="NameEntry" Placeholder="Recurring payment name" TextColor="White"/>
+
+        <Label Text="Enter recurring payment amount:" TextColor="White"/>
+        <Entry x:Name="AmountEntry" Placeholder="Recurring payment amount" Keyboard="Numeric" TextColor="White"/>
+
+        <Label Text="Enter starting date:" TextColor="White"/>
+        <DatePicker x:Name="DatePicker" TextColor="White" />
+
+        <Label Text="Select frequency:" TextColor="White"/>
+        <Picker x:Name="FrequencyPicker" TextColor="White" />
+
+        <Label Text="Select category:" TextColor="White"/>
+        <Grid x:Name="CategoryGrid" RowSpacing="10" ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+        <Button Text="Save Recurring Payment" Clicked="SaveRecurringPayment_Clicked" />
+    </StackLayout>
+</ContentPage>

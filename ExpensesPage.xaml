@@ -9,10 +9,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-            <!-- Filter Selection -->
             <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="10">
-                <!-- Filter Picker -->
                 <Picker x:Name="FilterPicker" Title="Select Filter" SelectedIndexChanged="FilterPicker_SelectedIndexChanged" TextColor="White" TitleColor="White" HorizontalOptions="Start" >
                     <Picker.ItemsSource>
                         <x:String>Date</x:String>
@@ -20,13 +17,11 @@
                     </Picker.ItemsSource>
                 </Picker>
 
-                <!-- Date Filter -->
                 <StackLayout x:Name="DateFilterLayout" IsVisible="False" Orientation="Horizontal" Spacing="10">
                     <DatePicker x:Name="StartDatePicker" Format="yyyy-MM-dd" HorizontalOptions="Start" TextColor="White"  />
                     <DatePicker x:Name="EndDatePicker" Format="yyyy-MM-dd"  HorizontalOptions="StartAndExpand" TextColor="White"/>
                 </StackLayout>
 
-                <!-- Category Filter -->
                 <Picker x:Name="CategoryPicker" Title="Pick your category" IsVisible="False" TextColor="White" TitleColor="White" HorizontalOptions="Start">
                     <Picker.ItemsSource>
                         <x:String>Food</x:String>
@@ -38,7 +33,6 @@
                 </Picker>
             </StackLayout>
 
-            <!-- Apply and Reset Filter Buttons -->
             <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10">
                 <Button Text="Apply Filter" Clicked="ApplyFilter_Clicked" IsVisible="False" x:Name="ApplyFilterButton" HorizontalOptions="EndAndExpand"/>
                 <Button Text="Reset Filter" Clicked="ResetFilter_Clicked" IsVisible="False" x:Name="ResetFilterButton" HorizontalOptions="EndAndExpand"/>
@@ -49,7 +43,6 @@
             <Label Text="Recent Expenses:" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
         </StackLayout>
 
-        <!-- List of Expenses -->
         <ListView x:Name="ExpensesListView" ItemsSource="{Binding FilteredExpenses}"
           SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
@@ -58,18 +51,14 @@
                         <StackLayout Margin="0,0,0,5">
                             <Border Stroke="#410F3C" StrokeThickness="4">
                                 <StackLayout Spacing="4" BackgroundColor="DimGray">
-                                    <!-- Expense Item -->
-                                    <!-- Expense Name -->
                                     <StackLayout Orientation="Horizontal" Padding="8">
                                         <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
                                         <Label Text="{Binding AmountFormatted, StringFormat='-{0}'}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkRed"/>
                                     </StackLayout>
-                                    <!-- Expense Details -->
                                     <StackLayout Orientation="Horizontal" Padding="8">
                                         <Label Text="{Binding Category}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
                                         <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
                                     </StackLayout>
-                                    <!-- Edit and Delete Buttons -->
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="5" Padding="8">
                                         <Button Text="Edit" Clicked="EditExpense_Clicked" BackgroundColor="#410F3C"/>
                                         <Button Text="Delete" Clicked="DeleteExpense_Clicked" BackgroundColor="#410F3C"/>

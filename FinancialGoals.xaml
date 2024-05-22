@@ -1,0 +1,45 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.FinancialGoals"
+             Title="Goals"
+             BackgroundColor="#4E4E4E">
+    <StackLayout Padding="20">
+        <StackLayout Orientation="Horizontal" Padding="5">
+            <Label Text="Financial Goals:" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
+        </StackLayout>
+        <ListView x:Name="GoalsListView" ItemsSource="{Binding SortedGoals}"
+                  SeparatorVisibility="None" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="0,0,0,5">
+                            <Border Stroke="#410F3C" StrokeThickness="4">
+                                <StackLayout Spacing="4" BackgroundColor="DimGray">
+                                    <StackLayout Orientation="Horizontal" Padding="8">
+                                        <Label Text="{Binding GoalName}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
+                                        <Label Text="{Binding AmountFormatted, StringFormat='{0:C}'}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkGreen"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Padding="8">
+                                        <Label Text="{Binding Priority}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
+                                        <Label Text="{Binding TargetDate, StringFormat='Target Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="5" Padding="8">
+                                        <Button Text="Add Money" Clicked="AddMoney_Clicked" BackgroundColor="#410F3C"/>
+                                        <Button Text="Edit" Clicked="EditGoal_Clicked" BackgroundColor="#410F3C"/>
+                                        <Button Text="Delete" Clicked="DeleteGoal_Clicked" BackgroundColor="#410F3C"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Border>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Image Source="plusbuttonbun.png" HeightRequest="65" WidthRequest="55" HorizontalOptions="EndAndExpand">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="AddGoal_Tapped"/>
+            </Image.GestureRecognizers>
+        </Image>
+    </StackLayout>
+</ContentPage>

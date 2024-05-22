@@ -14,20 +14,16 @@ namespace Dollar_Wise
         {
             InitializeComponent();
             _dataService = new DataService(App.Database);
-
-            // Set the ItemsSource property of the Picker
             CategoryPicker.ItemsSource = new List<string> { "Food", "Transportation", "Entertainment", "Utilities", "Investments", "Other" };
         }
 
         private async void SaveExpense_Clicked(object sender, EventArgs e)
         {
-            // Retrieve user inputs from the page
             var name = NameEntry.Text;
             var amount = AmountEntry.Text;
             var date = DatePicker.Date;
             var category = CategoryPicker.SelectedItem as string;
 
-            // Validate inputs
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
             {
                 await DisplayAlert("Error", "Expense name must be at least 3 characters long.", "OK");
@@ -53,7 +49,7 @@ namespace Dollar_Wise
                 return;
             }
 
-            // Create Expense object
+            // create the object
             var expense = new Expense
             {
                 Name = name,
@@ -61,10 +57,7 @@ namespace Dollar_Wise
                 Date = date,
                 Category = category
             };
-
-            // Save the expense to the database
             await _dataService.AddExpense(expense);
-            // Navigate back to the previous page
             await Navigation.PopAsync();
         }
     }
