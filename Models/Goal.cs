@@ -1,11 +1,11 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Dollar_Wise.Models
 {
-    public class Goal
+    public class Goal : INotifyPropertyChanged
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -18,7 +18,17 @@ namespace Dollar_Wise.Models
         public decimal CurrentAmount
         {
             get { return _currentAmount; }
-            // Remove the setter to prevent direct modification of CurrentAmount
+            private set
+            {
+                if (_currentAmount != value)
+                {
+                    _currentAmount = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(CurrentAmount));
+                    OnPropertyChanged(nameof(AmountFormatted));
+                    OnPropertyChanged(nameof(Progress));
+                }
+            }
         }
 
         public DateTime TargetDate { get; set; }
@@ -30,7 +40,7 @@ namespace Dollar_Wise.Models
         {
             get
             {
-                return GetFormattedAmount();
+                return $"{CurrentAmount}/{TargetAmount} {GetCurrencySymbol(Preferences.Get("SelectedCurrency", "USD"))}";
             }
         }
 
@@ -48,36 +58,17 @@ namespace Dollar_Wise.Models
             _currentAmount = 0;
         }
 
-        private string GetFormattedAmount()
-        {
-            // get currenct based on set preferences
-            string currencySymbol = GetCurrencySymbol(Preferences.Get("SelectedCurrency", "USD"));
-
-            switch (Preferences.Get("SelectedCurrency", "USD"))
-            {
-                case "EUR":
-                    return $"{TargetAmount} €";
-                case "RON":
-                    return $"{TargetAmount} RON";
-                default: 
-                    return $"${TargetAmount}";
-            }
-        }
-
         private string GetCurrencySymbol(string currency)
         {
-            switch (currency)
+            return currency switch
             {
-                case "EUR":
-                    return "€";
-                case "RON":
-                    return "RON";
-                default:
-                    return "$";
-            }
+                "EUR" => "€",
+                "RON" => "RON",
+                _ => "$"
+            };
         }
 
-        private double CalculateProgress()
+        public double CalculateProgress()
         {
             if (TargetAmount == 0)
                 return 0;
@@ -85,10 +76,16 @@ namespace Dollar_Wise.Models
             return Math.Min(1, (double)(_currentAmount / TargetAmount));
         }
 
-        // add money to goal
         public void AddMoney(decimal amount)
         {
-            _currentAmount += amount;
+            CurrentAmount += amount;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

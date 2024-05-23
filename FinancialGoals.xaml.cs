@@ -24,7 +24,6 @@ namespace Dollar_Wise
         {
             _allGoals = await _dataService.GetGoals();
 
-            // sort goals by priority: High, Medium, Low
             var sortedGoals = _allGoals.OrderByDescending(g => g.Priority == "High")
                                        .ThenByDescending(g => g.Priority == "Medium")
                                        .ThenByDescending(g => g.Priority == "Low")
@@ -45,14 +44,32 @@ namespace Dollar_Wise
 
             if (goal != null)
             {
-                // Handle adding money to the selected goal here
-                // Example: Show a dialog to enter the amount to add and update the goal
+                string result = await DisplayPromptAsync("Add Money", "Enter the amount to add:", keyboard: Keyboard.Numeric);
+
+                if (decimal.TryParse(result, out decimal amount))
+                {
+                    goal.AddMoney(amount);
+                    await _dataService.UpdateGoal(goal);
+
+                    // Update the specific goal in the list
+                    var index = _allGoals.FindIndex(g => g.Id == goal.Id);
+                    if (index >= 0)
+                    {
+                        _allGoals[index] = goal;
+                        GoalsListView.ItemsSource = null;
+                        GoalsListView.ItemsSource = _allGoals;
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Invalid Input", "Please enter a valid amount.", "OK");
+                }
             }
         }
 
+
         private async void EditGoal_Clicked(object sender, EventArgs e)
         {
- 
             var button = sender as Button;
             var goal = button?.BindingContext as Goal;
 
@@ -62,26 +79,23 @@ namespace Dollar_Wise
                 LoadGoals();
             }
         }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            // Reload goals when the page is shown again
             LoadGoals();
         }
+
         private async void DeleteGoal_Clicked(object sender, EventArgs e)
         {
-            // Get the selected goal from the ListView
             var button = sender as Button;
             var goal = button?.BindingContext as Goal;
 
             if (goal != null)
             {
-                // Confirm deletion with an alert dialog
                 var result = await DisplayAlert("Delete Goal", $"Are you sure you want to delete '{goal.GoalName}'?", "Yes", "No");
                 if (result)
                 {
-                    // Delete the goal from the database
                     await _dataService.DeleteGoal(goal);
                     LoadGoals();
                 }

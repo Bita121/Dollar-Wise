@@ -17,12 +17,14 @@
                                 <StackLayout Spacing="4" BackgroundColor="DimGray">
                                     <StackLayout Orientation="Horizontal" Padding="8">
                                         <Label Text="{Binding GoalName}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
-                                        <Label Text="{Binding AmountFormatted, StringFormat='{0:C}'}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkGreen"/>
+                                        <Label Text="{Binding AmountFormatted}" FontSize="Subtitle" HorizontalOptions="End" TextColor="LightGreen"/>
                                     </StackLayout>
+                                    
                                     <StackLayout Orientation="Horizontal" Padding="8">
-                                        <Label Text="{Binding Priority}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
+                                        <Label Text="{Binding Priority}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="#410F3C"/>
                                         <Label Text="{Binding TargetDate, StringFormat='Target Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
                                     </StackLayout>
+                                    <ProgressBar Progress="{Binding Progress}" HorizontalOptions="FillAndExpand" HeightRequest="20"   BackgroundColor="#4E4E4E" ProgressColor="LightGreen" Margin="5"/>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="5" Padding="8">
                                         <Button Text="Add Money" Clicked="AddMoney_Clicked" BackgroundColor="#410F3C"/>
                                         <Button Text="Edit" Clicked="EditGoal_Clicked" BackgroundColor="#410F3C"/>

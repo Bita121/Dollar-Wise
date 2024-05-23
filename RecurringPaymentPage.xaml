@@ -20,7 +20,7 @@
                                         <Label Text="{Binding AmountFormatted}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkRed"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" Padding="8">
-                                        <Label Text="{Binding Category}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
+                                        <Label Text="{Binding Frequency}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="#410F3C"/>
                                         <Label Text="{Binding StartingDate, StringFormat='Starting Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="5" Padding="8">

@@ -35,7 +35,7 @@
             Route="FinancialGoals" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Recurring Payments" Icon="pusculitagoal.png">
+    <FlyoutItem Title="Recurring Payments" Icon="bancnota.png">
         <ShellContent
             Title="Recurring Payments"
             ContentTemplate="{DataTemplate local:RecurringPaymentPage}"

@@ -12,7 +12,7 @@
         </StackLayout>
 
         <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="0,60,0,0">
-            <charts:ChartView x:Name="PieChartView"  HeightRequest="300" BackgroundColor="#4E4E4E"/>
+            <charts:ChartView x:Name="PieChartView"  HeightRequest="250" BackgroundColor="#4E4E4E"/>
         </StackLayout>
     </StackLayout>
 
