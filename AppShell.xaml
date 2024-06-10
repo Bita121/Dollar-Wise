@@ -41,6 +41,13 @@
             ContentTemplate="{DataTemplate local:RecurringPaymentPage}"
             Route="Recurring Payments" />
     </FlyoutItem>
+    
+    <FlyoutItem Title="Exchange calculator" Icon="bancnota.png">
+        <ShellContent
+            Title="Exchange calculator"
+            ContentTemplate="{DataTemplate local:CurrencyExchangePage}"
+            Route="Exchange calculator" />
+    </FlyoutItem>
 
     <Shell.ItemTemplate>
         <DataTemplate>
