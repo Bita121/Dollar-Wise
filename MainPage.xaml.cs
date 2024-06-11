@@ -15,6 +15,7 @@ namespace Dollar_Wise
         public MainPage(string username, string selectedCurrency)
         {
             InitializeComponent();
+            SetGreeting();
 
             ViewModel = new MainPageViewModel(username, selectedCurrency);
             BindingContext = ViewModel;
@@ -24,6 +25,12 @@ namespace Dollar_Wise
 
             // Initially display expenses chart
             ViewModel.UpdatePieChartWithExpensesAsync(UpdatePieChart);
+        }
+
+        private void SetGreeting()
+        {
+            string username = Preferences.Get("Username", "User");
+            GreetingLabel.Text = $"Hello, {username}!";
         }
 
         public MainPage() : this(Preferences.Get("Username", null), Preferences.Get("SelectedCurrency", null))

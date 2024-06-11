@@ -44,7 +44,7 @@
             <Label Text="Recent Incomes:" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
         </StackLayout>
 
-        <ListView x:Name="IncomesListView" ItemsSource="{Binding FilteredIncomes}"
+        <ListView x:Name="IncomesListView"
           SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>

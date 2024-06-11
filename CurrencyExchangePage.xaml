@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Dollar_Wise.CurrencyExchangePage"
-             Title="Currency Exchange"
+             Title="Currency Converter"
              BackgroundColor="#4E4E4E">
     <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center" Spacing="25" >
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">

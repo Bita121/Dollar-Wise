@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dollar_Wise.SettingsPage"
+             Title="Settings"
+             BackgroundColor="#4E4E4E">
+    <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center" Spacing="15">
+
+
+        <Image Source="poza_setari.png" WidthRequest="150" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,35"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+            <Button Text="Change Username" Clicked="OnChangeUsernameClicked" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="150"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,20,0,0">
+            <Button Text="Change Currency" Clicked="OnChangeBaseCurrencyClicked" HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="150"/>
+        </StackLayout>
+
+        <Label Text="Note: Changes will take effect after restarting the app." TextColor="White" Margin="0,20,0,0" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        <Button Text="Save and Restart App" Clicked="OnSaveSettingsClicked" Margin="0,20,0,0" HorizontalOptions="Center" VerticalOptions="Center"/>
+    </StackLayout>
+</ContentPage>

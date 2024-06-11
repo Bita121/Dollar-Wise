@@ -6,13 +6,15 @@
              BackgroundColor="#4E4E4E">
 
     <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,40,0,0">
-        <StackLayout Orientation="Horizontal" >
+        <Label x:Name="GreetingLabel" FontSize="Large" TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,20,0,0"/>
+
+        <StackLayout Orientation="Horizontal" Margin="20,0,20,0">
             <Button Text="Expenses" HorizontalOptions="StartAndExpand" Clicked="OnExpensesClicked" BackgroundColor="{Binding ExpenseButtonColor}" />
             <Button Text="Incomes" HorizontalOptions="EndAndExpand" Clicked="OnIncomesClicked" BackgroundColor="{Binding IncomeButtonColor}" />
         </StackLayout>
 
         <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="0,60,0,0">
-            <charts:ChartView x:Name="PieChartView"  HeightRequest="250" BackgroundColor="#4E4E4E"/>
+            <charts:ChartView x:Name="PieChartView" HeightRequest="250" BackgroundColor="#4E4E4E"/>
         </StackLayout>
     </StackLayout>
 

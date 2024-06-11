@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
+
 using System.ComponentModel;
-using System.Linq;
 using Dollar_Wise.Models;
 using Dollar_Wise.Services;
-using Microsoft.Maui.Controls;
 
 namespace Dollar_Wise
 {

@@ -43,7 +43,7 @@
             <Label Text="Recent Expenses:" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
         </StackLayout>
 
-        <ListView x:Name="ExpensesListView" ItemsSource="{Binding FilteredExpenses}"
+        <ListView x:Name="ExpensesListView"
           SeparatorVisibility="None" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -53,7 +53,7 @@
                                 <StackLayout Spacing="4" BackgroundColor="DimGray">
                                     <StackLayout Orientation="Horizontal" Padding="8">
                                         <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
-                                        <Label Text="{Binding AmountFormatted, StringFormat='-{0}'}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkRed"/>
+                                        <Label Text="{Binding AmountFormatted}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkRed"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" Padding="8">
                                         <Label Text="{Binding Category}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>

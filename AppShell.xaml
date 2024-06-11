@@ -35,20 +35,27 @@
             Route="FinancialGoals" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Recurring Payments" Icon="bancnota.png">
+    <FlyoutItem Title="Recurring Payments" Icon="recurring.png">
         <ShellContent
             Title="Recurring Payments"
             ContentTemplate="{DataTemplate local:RecurringPaymentPage}"
             Route="Recurring Payments" />
     </FlyoutItem>
     
-    <FlyoutItem Title="Exchange calculator" Icon="bancnota.png">
+    <FlyoutItem Title="Currency converter" Icon="converter.png">
         <ShellContent
-            Title="Exchange calculator"
+            Title="Currency converter"
             ContentTemplate="{DataTemplate local:CurrencyExchangePage}"
-            Route="Exchange calculator" />
+            Route="Currency converter" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Settings" Icon="poza_setari.png">
+        <ShellContent
+            Title="Settings"
+            ContentTemplate="{DataTemplate local:SettingsPage}"
+            Route="Settings" />
+    </FlyoutItem>
+    
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid Padding="10" ColumnSpacing="10">

@@ -30,6 +30,49 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <RunAOTCompilation>False</RunAOTCompilation>
+	  <PublishTrimmed>False</PublishTrimmed>
+	  <Optimize>True</Optimize>
+	  <DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
+	  <Optimize>True</Optimize>
+	  <DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-maccatalyst|AnyCPU'">
+	  <Optimize>True</Optimize>
+	  <DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-windows10.0.19041.0|AnyCPU'">
+	  <Optimize>True</Optimize>
+	  <DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+	  <DebugType>portable</DebugType>
+	  <Optimize>True</Optimize>
+	  <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <DebugType>portable</DebugType>
+	  <Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-maccatalyst|AnyCPU'">
+	  <DebugType>portable</DebugType>
+	  <Optimize>True</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-windows10.0.19041.0|AnyCPU'">
+	  <DebugType>portable</DebugType>
+	  <Optimize>True</Optimize>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -50,6 +93,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\bancnota.png" />
+	  <None Remove="Resources\Images\converter.png" />
 	  <None Remove="Resources\Images\entertainment_icon.png" />
 	  <None Remove="Resources\Images\food_icon.png" />
 	  <None Remove="Resources\Images\home.png" />
@@ -58,8 +102,10 @@
 	  <None Remove="Resources\Images\plusbuttonbun.png" />
 	  <None Remove="Resources\Images\plusbuttonpurplegood.png" />
 	  <None Remove="Resources\Images\pozameniu.jpg" />
+	  <None Remove="Resources\Images\poza_setari.png" />
 	  <None Remove="Resources\Images\pusculita.png" />
 	  <None Remove="Resources\Images\pusculitaGoal.png" />
+	  <None Remove="Resources\Images\recurring.png" />
 	  <None Remove="Resources\Images\transportation_icon.png" />
 	  <None Remove="Resources\Images\utilities_icon.png" />
 	</ItemGroup>
@@ -128,6 +174,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="RecurringPayments\RecurringPaymentDialogPageEdit.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
