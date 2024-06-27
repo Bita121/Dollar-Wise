@@ -80,7 +80,10 @@ namespace Dollar_Wise
             }
         }
 
-        protected override async void OnAppearing()
+        protected override async void 
+            
+            
+            OnAppearing()
         {
             base.OnAppearing();
             LoadGoals();

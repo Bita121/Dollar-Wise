@@ -4,11 +4,7 @@
              Title="Expenses"
              BackgroundColor="#4E4E4E">
     <StackLayout Padding="20">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+
             <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="10">
                 <Picker x:Name="FilterPicker" Title="Select Filter" SelectedIndexChanged="FilterPicker_SelectedIndexChanged" TextColor="White" TitleColor="White" HorizontalOptions="Start" >
                     <Picker.ItemsSource>
@@ -37,9 +33,8 @@
                 <Button Text="Apply Filter" Clicked="ApplyFilter_Clicked" IsVisible="False" x:Name="ApplyFilterButton" HorizontalOptions="EndAndExpand"/>
                 <Button Text="Reset Filter" Clicked="ResetFilter_Clicked" IsVisible="False" x:Name="ResetFilterButton" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
-        </Grid>
 
-        <StackLayout Orientation="Horizontal" Padding="5">
+            <StackLayout Orientation="Horizontal" Padding="5">
             <Label Text="Recent Expenses:" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
         </StackLayout>
 

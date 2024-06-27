@@ -73,12 +73,10 @@ namespace Dollar_Wise.RecurringPayments
 
         private async void SaveRecurringPayment_Clicked(object sender, EventArgs e)
         {
-
             var name = NameEntry.Text;
             var amountText = AmountEntry.Text;
             var startingDate = DatePicker.Date;
-            var frequency = (RecurrenceFrequency)FrequencyPicker.SelectedItem;
-
+            var frequency = FrequencyPicker.SelectedItem as RecurrenceFrequency?;
 
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
             {
@@ -99,6 +97,12 @@ namespace Dollar_Wise.RecurringPayments
                 return;
             }
 
+            if (frequency == null)
+            {
+                await DisplayAlert("Error", "Please select a frequency.", "OK");
+                return;
+            }
+
             if (string.IsNullOrEmpty(_selectedCategory))
             {
                 await DisplayAlert("Error", "Please select a category.", "OK");
@@ -111,7 +115,7 @@ namespace Dollar_Wise.RecurringPayments
                 Name = name,
                 Amount = amountValue,
                 StartingDate = startingDate,
-                Frequency = frequency,
+                Frequency = frequency.Value,
                 Category = _selectedCategory
             };
 
@@ -119,6 +123,5 @@ namespace Dollar_Wise.RecurringPayments
 
             await Navigation.PopAsync();
         }
-
     }
 }

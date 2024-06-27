@@ -24,6 +24,7 @@ namespace Dollar_Wise.RecurringPayments
                 NameEntry.Text = _recurringPaymentToUpdate.Name;
                 AmountEntry.Text = _recurringPaymentToUpdate.Amount.ToString();
                 DatePicker.Date = _recurringPaymentToUpdate.StartingDate;
+                FrequencyPicker.SelectedItem = _recurringPaymentToUpdate.Frequency;
                 _selectedCategory = _recurringPaymentToUpdate.Category;
             }
 
@@ -37,14 +38,14 @@ namespace Dollar_Wise.RecurringPayments
 
             // define categories with photos
             var categories = new Dictionary<string, string>
-    {
-        { "Food", "food_icon.png" },
-        { "Transportation", "transportation_icon.png" },
-        { "Entertainment", "entertainment_icon.png" },
-        { "Utilities", "utilities_icon.png" },
-        { "Investments", "investments_icon.png" },
-        { "Other", "other_icon.png" }
-    };
+            {
+                { "Food", "food_icon.png" },
+                { "Transportation", "transportation_icon.png" },
+                { "Entertainment", "entertainment_icon.png" },
+                { "Utilities", "utilities_icon.png" },
+                { "Investments", "investments_icon.png" },
+                { "Other", "other_icon.png" }
+            };
 
             // add category icons to the grid
             int column = 0;
@@ -67,7 +68,6 @@ namespace Dollar_Wise.RecurringPayments
                 };
                 image.GestureRecognizers.Add(tapGestureRecognizer);
 
-
                 CategoryGrid.Children.Add(image);
 
                 Grid.SetRow(image, row);
@@ -82,13 +82,12 @@ namespace Dollar_Wise.RecurringPayments
             }
         }
 
-
         private async void SaveRecurringPayment_Clicked(object sender, EventArgs e)
         {
             var name = NameEntry.Text;
             var amount = AmountEntry.Text;
             var startingDate = DatePicker.Date;
-            var frequency = (RecurrenceFrequency)FrequencyPicker.SelectedItem;
+            var frequency = FrequencyPicker.SelectedItem as RecurrenceFrequency?;
 
             if (string.IsNullOrWhiteSpace(name) || name.Length < 3)
             {
@@ -109,6 +108,12 @@ namespace Dollar_Wise.RecurringPayments
                 return;
             }
 
+            if (frequency == null)
+            {
+                await DisplayAlert("Error", "Please select a frequency.", "OK");
+                return;
+            }
+
             if (string.IsNullOrEmpty(_selectedCategory))
             {
                 await DisplayAlert("Error", "Please select a category.", "OK");
@@ -118,7 +123,7 @@ namespace Dollar_Wise.RecurringPayments
             _recurringPaymentToUpdate.Name = name;
             _recurringPaymentToUpdate.Amount = amountValue;
             _recurringPaymentToUpdate.StartingDate = startingDate;
-            _recurringPaymentToUpdate.Frequency = frequency;
+            _recurringPaymentToUpdate.Frequency = frequency.Value;
             _recurringPaymentToUpdate.Category = _selectedCategory;
 
             await _dataService.UpdateRecurringPayment(_recurringPaymentToUpdate);

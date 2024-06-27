@@ -67,8 +67,14 @@ namespace Dollar_Wise
         {
             return new Dictionary<string, string>
             {
-                { "USD", "us" }, { "EUR", "eu" }, { "GBP", "gb" }, { "RON", "ro" },
-                // Add other mappings as needed
+                { "AED", "ae" }, { "AUD", "au" }, { "BGN", "bg" }, { "BRL", "br" },
+        { "CAD", "ca" }, { "CHF", "ch" }, { "CNY", "cn" }, { "CZK", "cz" },
+        { "DKK", "dk" }, { "EGP", "eg" }, { "EUR", "eu" }, { "GBP", "gb" },
+        { "HUF", "hu" }, { "INR", "in" }, { "JPY", "jp" }, { "KRW", "kr" },
+        { "MDL", "md" }, { "MXN", "mx" }, { "NOK", "no" }, { "NZD", "nz" },
+        { "PLN", "pl" }, { "RON", "ro" }, { "RSD", "rs" }, { "RUB", "ru" },
+        { "SEK", "se" }, { "THB", "th" }, { "TRY", "tr" }, { "UAH", "ua" },
+        { "USD", "us" }, { "XAU", "un" }, { "XDR", "un" }, { "ZAR", "za" }
             };
         }
 

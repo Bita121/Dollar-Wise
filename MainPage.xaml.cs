@@ -59,9 +59,19 @@ namespace Dollar_Wise
 
         private void UpdatePieChart(List<ChartEntry> entries)
         {
-            var chart = new DonutChart { Entries = entries, BackgroundColor = SKColors.DarkGray, LabelMode = LabelMode.LeftAndRight, LabelTextSize=40f};
-            PieChartView.Chart = chart;
+            if (entries == null || !entries.Any())
+            {
+                NoDataLabel.IsVisible = true;
+                PieChartView.IsVisible = false;
+            }
+            else
+            {
+                NoDataLabel.IsVisible = false;
+                PieChartView.IsVisible = true;
 
+                var chart = new DonutChart { Entries = entries, BackgroundColor = SKColors.DarkGray, LabelMode = LabelMode.LeftAndRight, LabelTextSize = 40f };
+                PieChartView.Chart = chart;
+            }
         }
     }
 }
