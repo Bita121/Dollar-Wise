@@ -73,7 +73,7 @@ namespace Dollar_Wise
                     {
                         Label = kvp.Key,
                         ValueLabel = percentage.ToString("0.##") + "%",
-                        Color = SKColor.Parse(GetRandomColorHex())
+                        Color = SKColor.Parse(GetExpenseCategoryColor(kvp.Key))
                     });
                 }
 
@@ -104,7 +104,7 @@ namespace Dollar_Wise
                     {
                         Label = kvp.Key,
                         ValueLabel = percentage.ToString("0.##") + "%",
-                        Color = SKColor.Parse(GetRandomColorHex())
+                        Color = SKColor.Parse(GetIncomeCategoryColor(kvp.Key))
                     });
                 }
 
@@ -150,10 +150,33 @@ namespace Dollar_Wise
             return await _dataService.GetIncomes();
         }
 
-        private string GetRandomColorHex()
+        private string GetExpenseCategoryColor(string category)
         {
-            var random = new Random();
-            return string.Format("#{0:X6}", random.Next(0x1000000));
+            var expenseColors = new Dictionary<string, string>
+            {
+                { "Food", "#FF6347" }, // Tomato
+                { "Transportation", "#4682B4" }, // SteelBlue
+                { "Entertainment", "#9370DB" }, // MediumPurple
+                { "Utilities", "#FFD700" }, // Gold
+                { "Investments", "#00FA9A" }, // MediumSpringGreen
+                { "Other", "#8A2BE2" } // DarkGray
+            };
+
+            return expenseColors.TryGetValue(category, out var color) ? color : "#808080"; // Default color if category not found
+        }
+
+        private string GetIncomeCategoryColor(string category)
+        {
+            var incomeColors = new Dictionary<string, string>
+            {
+                { "Salary", "#00FF7F" }, // SpringGreen
+                { "Freelance", "#1E90FF" }, // DodgerBlue
+                { "Investment", "#8A2BE2" }, // BlueViolet
+                { "Gift", "#FF69B4" }, // HotPink
+                { "Other", "#FFD700" } // LightGray
+            };
+
+            return incomeColors.TryGetValue(category, out var color) ? color : "#808080"; // Default color if category not found
         }
     }
 }

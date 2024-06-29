@@ -14,22 +14,7 @@ namespace Dollar_Wise.Models
 
         public decimal TargetAmount { get; set; }
 
-        private decimal _currentAmount;
-        public decimal CurrentAmount
-        {
-            get { return _currentAmount; }
-            private set
-            {
-                if (_currentAmount != value)
-                {
-                    _currentAmount = value;
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(CurrentAmount));
-                    OnPropertyChanged(nameof(AmountFormatted));
-                    OnPropertyChanged(nameof(Progress));
-                }
-            }
-        }
+        public decimal CurrentAmount { get; set; }
 
         public DateTime TargetDate { get; set; }
 
@@ -53,11 +38,6 @@ namespace Dollar_Wise.Models
             }
         }
 
-        public Goal()
-        {
-            _currentAmount = 0;
-        }
-
         private string GetCurrencySymbol(string currency)
         {
             return currency switch
@@ -73,7 +53,7 @@ namespace Dollar_Wise.Models
             if (TargetAmount == 0)
                 return 0;
 
-            return Math.Min(1, (double)(_currentAmount / TargetAmount));
+            return Math.Min(1, (double)(CurrentAmount / TargetAmount));
         }
 
         public void AddMoney(decimal amount)

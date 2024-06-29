@@ -4,7 +4,11 @@
              Title="Expenses"
              BackgroundColor="#4E4E4E">
     <StackLayout Padding="20">
-
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0" Orientation="Vertical" Spacing="10">
                 <Picker x:Name="FilterPicker" Title="Select Filter" SelectedIndexChanged="FilterPicker_SelectedIndexChanged" TextColor="White" TitleColor="White" HorizontalOptions="Start" >
                     <Picker.ItemsSource>
@@ -33,7 +37,7 @@
                 <Button Text="Apply Filter" Clicked="ApplyFilter_Clicked" IsVisible="False" x:Name="ApplyFilterButton" HorizontalOptions="EndAndExpand"/>
                 <Button Text="Reset Filter" Clicked="ResetFilter_Clicked" IsVisible="False" x:Name="ResetFilterButton" HorizontalOptions="EndAndExpand"/>
             </StackLayout>
-
+        </Grid>
             <StackLayout Orientation="Horizontal" Padding="5">
             <Label Text="Recent Expenses:" FontSize="Title" HorizontalOptions="Start" Margin="0,0,10,0" TextColor="White"/>
         </StackLayout>
@@ -48,10 +52,10 @@
                                 <StackLayout Spacing="4" BackgroundColor="DimGray">
                                     <StackLayout Orientation="Horizontal" Padding="8">
                                         <Label Text="{Binding Name}" FontSize="Title" HorizontalOptions="StartAndExpand" TextColor="White"/>
-                                        <Label Text="{Binding AmountFormatted}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkRed"/>
+                                        <Label Text="{Binding AmountFormatted, StringFormat='-{0}'}" FontSize="Subtitle" HorizontalOptions="End" TextColor="DarkRed"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" Padding="8">
-                                        <Label Text="{Binding Category}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="DarkGray"/>
+                                        <Label Text="{Binding Category}" FontSize="Subtitle" HorizontalOptions="StartAndExpand" TextColor="#410F3C"/>
                                         <Label Text="{Binding Date, StringFormat='Date: {0:MM/dd/yyyy}'}" FontSize="Caption" HorizontalOptions="End" TextColor="White"/>
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="5" Padding="8">

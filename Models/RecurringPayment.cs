@@ -16,6 +16,7 @@ namespace Dollar_Wise.Models
         public DateTime StartingDate { get; set; }
         public RecurrenceFrequency Frequency { get; set; }
         public string Category { get; set; }
+        public DateTime? LastExpenseDate { get; set; }   
         public bool IsActive { get; set; } 
 
         [Ignore]

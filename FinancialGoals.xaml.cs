@@ -48,16 +48,29 @@ namespace Dollar_Wise
 
                 if (decimal.TryParse(result, out decimal amount))
                 {
-                    goal.AddMoney(amount);
-                    await _dataService.UpdateGoal(goal);
-
-                    // Update the specific goal in the list
-                    var index = _allGoals.FindIndex(g => g.Id == goal.Id);
-                    if (index >= 0)
+                    decimal remainingAmount = goal.TargetAmount - goal.CurrentAmount;
+                    if (amount > remainingAmount)
                     {
-                        _allGoals[index] = goal;
-                        GoalsListView.ItemsSource = null;
-                        GoalsListView.ItemsSource = _allGoals;
+                        await DisplayAlert("Exceeds Target", $"You only need {remainingAmount:C} to reach your goal.", "OK");
+                    }
+                    else
+                    {
+                        goal.AddMoney(amount);
+                        await _dataService.UpdateGoal(goal);
+
+                        // Update the specific goal in the list
+                        var index = _allGoals.FindIndex(g => g.Id == goal.Id);
+                        if (index >= 0)
+                        {
+                            _allGoals[index] = goal;
+                            GoalsListView.ItemsSource = null;
+                            GoalsListView.ItemsSource = _allGoals;
+                        }
+
+                        if (goal.CurrentAmount >= goal.TargetAmount)
+                        {
+                            await DisplayAlert("Congratulations", "Congrats, you've reached your goal! Keep on saving.", "OK");
+                        }
                     }
                 }
                 else
@@ -66,7 +79,6 @@ namespace Dollar_Wise
                 }
             }
         }
-
 
         private async void EditGoal_Clicked(object sender, EventArgs e)
         {
@@ -80,10 +92,7 @@ namespace Dollar_Wise
             }
         }
 
-        protected override async void 
-            
-            
-            OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             LoadGoals();

@@ -39,9 +39,9 @@ public partial class GoalDialogPage : ContentPage
             return;
         }
 
-        if (targetDate == default)
+        if (targetDate == default || targetDate <= DateTime.Today)
         {
-            await DisplayAlert("Error", "Please select a valid target date.", "OK");
+            await DisplayAlert("Error", "Please select a valid target date in the future.", "OK");
             return;
         }
 

@@ -3,6 +3,8 @@ using Dollar_Wise.Services;
 using Dollar_Wise.RecurringPayments;
 using Microsoft.Maui.Controls;
 using System;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Dollar_Wise
 {
@@ -21,6 +23,12 @@ namespace Dollar_Wise
         {
             var recurringPayments = await _dataService.GetRecurringPayments();
             RecurringPaymentsListView.ItemsSource = recurringPayments;
+
+            // Check for and create any needed expenses
+            foreach (var recurringPayment in recurringPayments)
+            {
+                await CheckAndCreateExpense(recurringPayment);
+            }
         }
 
         protected override void OnAppearing()
@@ -60,6 +68,50 @@ namespace Dollar_Wise
                     LoadRecurringPayments();
                 }
             }
+        }
+
+        private async Task CheckAndCreateExpense(RecurringPayment recurringPayment)
+        {
+            DateTime today = DateTime.Today;
+
+            if (!recurringPayment.LastExpenseDate.HasValue || recurringPayment.LastExpenseDate.Value < today)
+            {
+                DateTime nextExpenseDate = recurringPayment.LastExpenseDate.HasValue
+                    ? GetNextExpenseDate(recurringPayment.LastExpenseDate.Value, recurringPayment.Frequency)
+                    : recurringPayment.StartingDate;
+
+                while (nextExpenseDate <= today)
+                {
+                    var expense = new Expense
+                    {
+                        Name = recurringPayment.Name,
+                        Amount = recurringPayment.Amount,
+                        Date = nextExpenseDate,
+                        Category = recurringPayment.Category
+                    };
+
+                    await _dataService.AddExpense(expense);
+
+                    recurringPayment.LastExpenseDate = nextExpenseDate;
+                    nextExpenseDate = GetNextExpenseDate(nextExpenseDate, recurringPayment.Frequency);
+                }
+
+                await _dataService.UpdateRecurringPayment(recurringPayment);
+            }
+        }
+
+        private DateTime GetNextExpenseDate(DateTime lastExpenseDate, RecurrenceFrequency frequency)
+        {
+            return frequency switch
+            {
+                RecurrenceFrequency.Daily => lastExpenseDate.AddDays(1),
+                RecurrenceFrequency.Weekly => lastExpenseDate.AddDays(7),
+                RecurrenceFrequency.Monthly => lastExpenseDate.AddMonths(1),
+                RecurrenceFrequency.Quarterly => lastExpenseDate.AddMonths(3),
+                RecurrenceFrequency.SemiAnnually => lastExpenseDate.AddMonths(6),
+                RecurrenceFrequency.Annually => lastExpenseDate.AddYears(1),
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }
