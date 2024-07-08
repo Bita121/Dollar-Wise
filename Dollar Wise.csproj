@@ -92,6 +92,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Photos\plusbuttonbun.png" />
 	  <None Remove="Resources\Images\bancnota.png" />
 	  <None Remove="Resources\Images\converter.png" />
 	  <None Remove="Resources\Images\entertainment_icon.png" />
@@ -108,6 +109,10 @@
 	  <None Remove="Resources\Images\recurring.png" />
 	  <None Remove="Resources\Images\transportation_icon.png" />
 	  <None Remove="Resources\Images\utilities_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Photos\plusbuttonbun.png" />
 	</ItemGroup>
 
 	<ItemGroup>

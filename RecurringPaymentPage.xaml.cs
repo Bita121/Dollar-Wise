@@ -24,7 +24,7 @@ namespace Dollar_Wise
             var recurringPayments = await _dataService.GetRecurringPayments();
             RecurringPaymentsListView.ItemsSource = recurringPayments;
 
-            // Check for and create any needed expenses
+            //check for and create any needed expenses
             foreach (var recurringPayment in recurringPayments)
             {
                 await CheckAndCreateExpense(recurringPayment);

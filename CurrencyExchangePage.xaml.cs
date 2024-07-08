@@ -38,7 +38,7 @@ namespace Dollar_Wise
         {
             Dictionary<string, decimal> exchangeRates = new Dictionary<string, decimal>
             {
-                { BaseCurrency, 1 } // Base currency rate is 1
+                { BaseCurrency, 1 }//base currenct rate to 1
             };
 
             using (HttpClient client = new HttpClient())

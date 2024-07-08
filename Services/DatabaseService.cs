@@ -14,7 +14,7 @@ namespace Dollar_Wise.Services
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyDatabase.db3");
             _database = new SQLiteAsyncConnection(dbPath);
 
-            // creating tables if they don t exist
+            //create tables if they don t exist
             _database.CreateTableAsync<Expense>().Wait();
             _database.CreateTableAsync<Income>().Wait();
             _database.CreateTableAsync<Goal>().Wait();

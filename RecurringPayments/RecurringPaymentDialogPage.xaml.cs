@@ -22,7 +22,6 @@ namespace Dollar_Wise.RecurringPayments
 
         private void GenerateCategoryGrid()
         {
-            // clear existing grid
             CategoryGrid.Children.Clear();
 
             var categories = new Dictionary<string, string>
@@ -35,7 +34,6 @@ namespace Dollar_Wise.RecurringPayments
                 { "Other", "other_icon.png" }
             };
 
-            // add category icons to the grid
             int column = 0;
             int row = 0;
             foreach (var category in categories)
@@ -58,7 +56,6 @@ namespace Dollar_Wise.RecurringPayments
 
                 CategoryGrid.Children.Add(image);
 
-                // set the Grid.Row and Grid.Column properties to position the image
                 Grid.SetRow(image, row);
                 Grid.SetColumn(image, column);
 
@@ -109,7 +106,6 @@ namespace Dollar_Wise.RecurringPayments
                 return;
             }
 
-            // create recurringPayment object
             var recurringPayment = new RecurringPayment
             {
                 Name = name,

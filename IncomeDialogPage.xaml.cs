@@ -47,8 +47,6 @@ namespace Dollar_Wise
                 await DisplayAlert("Error", "Please select a category.", "OK");
                 return;
             }
-
-            // create the object
             var income = new Income
             {
                 Name = name,

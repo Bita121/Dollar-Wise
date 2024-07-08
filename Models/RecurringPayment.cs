@@ -30,7 +30,6 @@ namespace Dollar_Wise.Models
 
         private string GetFormattedAmount()
         {
-            // get currency based on set preferences
             string currencySymbol = GetCurrencySymbol(Preferences.Get("SelectedCurrency", "USD"));
 
             switch (Preferences.Get("SelectedCurrency", "USD"))

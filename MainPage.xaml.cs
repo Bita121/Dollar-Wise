@@ -22,8 +22,6 @@ namespace Dollar_Wise
 
             ViewModel.ExpenseButtonColor = Color.FromHex("#2196F3");
             ViewModel.IncomeButtonColor = Color.FromHex("#A9A9A9");
-
-            // Initially display expenses chart
             ViewModel.UpdatePieChartWithExpensesAsync(UpdatePieChart);
         }
 

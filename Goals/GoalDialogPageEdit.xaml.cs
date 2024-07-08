@@ -1,7 +1,6 @@
-using System;
 using Dollar_Wise.Models;
 using Dollar_Wise.Services;
-using Microsoft.Maui.Controls;
+
 
 namespace Dollar_Wise.Goals
 {
@@ -17,7 +16,7 @@ namespace Dollar_Wise.Goals
             PriorityPicker.ItemsSource = new[] { "High", "Medium", "Low" };
             _goalToUpdate = goalToUpdate;
 
-            // Prefill with details before editing
+            //prefill with data
             if (_goalToUpdate != null)
             {
                 NameEntry.Text = _goalToUpdate.GoalName;
@@ -29,7 +28,7 @@ namespace Dollar_Wise.Goals
 
         private async void SaveGoal_Clicked(object sender, EventArgs e)
         {
-            // Prefill with existing data
+            //prefill with existing data
             var name = NameEntry.Text;
             var targetAmount = TargetAmountEntry.Text;
             var targetDate = DatePicker.Date;

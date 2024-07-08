@@ -81,7 +81,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 Console.WriteLine(ex.Message);
             }
 
@@ -112,7 +111,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Handle exceptions
                 Console.WriteLine(ex.Message);
             }
 
@@ -154,29 +152,29 @@ namespace Dollar_Wise
         {
             var expenseColors = new Dictionary<string, string>
             {
-                { "Food", "#FF6347" }, // Tomato
-                { "Transportation", "#4682B4" }, // SteelBlue
-                { "Entertainment", "#9370DB" }, // MediumPurple
-                { "Utilities", "#FFD700" }, // Gold
-                { "Investments", "#00FA9A" }, // MediumSpringGreen
-                { "Other", "#8A2BE2" } // DarkGray
+                { "Food", "#FF6347" },
+                { "Transportation", "#4682B4" },
+                { "Entertainment", "#9370DB" },
+                { "Utilities", "#FFD700" },
+                { "Investments", "#00FA9A" },
+                { "Other", "#8A2BE2" }
             };
 
-            return expenseColors.TryGetValue(category, out var color) ? color : "#808080"; // Default color if category not found
+            return expenseColors.TryGetValue(category, out var color) ? color : "#808080";
         }
 
         private string GetIncomeCategoryColor(string category)
         {
             var incomeColors = new Dictionary<string, string>
             {
-                { "Salary", "#00FF7F" }, // SpringGreen
-                { "Freelance", "#1E90FF" }, // DodgerBlue
-                { "Investment", "#8A2BE2" }, // BlueViolet
-                { "Gift", "#FF69B4" }, // HotPink
-                { "Other", "#FFD700" } // LightGray
+                { "Salary", "#00FF7F" },
+                { "Freelance", "#1E90FF" },
+                { "Investment", "#8A2BE2" },
+                { "Gift", "#FF69B4" },
+                { "Other", "#FFD700" }
             };
 
-            return incomeColors.TryGetValue(category, out var color) ? color : "#808080"; // Default color if category not found
+            return incomeColors.TryGetValue(category, out var color) ? color : "#808080"; //default color if category not found
         }
     }
 }

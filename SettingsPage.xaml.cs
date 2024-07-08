@@ -13,9 +13,7 @@ namespace Dollar_Wise
 
         private void LoadSettings()
         {
-            // Load saved settings
             var username = Preferences.Get("Username", "User");
-            // Set other settings if necessary
         }
 
         private async void OnChangeUsernameClicked(object sender, EventArgs e)
@@ -42,7 +40,6 @@ namespace Dollar_Wise
         private async void OnSaveSettingsClicked(object sender, EventArgs e)
         {
             await DisplayAlert("Settings Saved", "Your settings have been saved successfully. Please restart the app for the changes to take effect.", "OK");
-            // Optionally, force a restart of the app
             Application.Current.Quit();
         }
     }

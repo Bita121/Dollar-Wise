@@ -95,7 +95,7 @@ namespace Dollar_Wise
 
             IncomesListView.ItemsSource = filteredIncomes;
 
-            // store applied filter parameters for reapplication after editing or deleting
+            //store applied filter parameters for reapplication after editing or deleting
             ApplyFilterButton.CommandParameter = (previousSelectedCategory, previousStartDate, previousEndDate);
         }
 

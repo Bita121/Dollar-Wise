@@ -25,7 +25,7 @@ namespace Dollar_Wise.Services
             await _database.CreateTableAsync<RecurringPaymentExpenseLink>(); // Create RecurringPaymentExpenseLink table
         }
 
-        // CRUD operations for Expense
+        // CRUD Expense
 
         public async Task AddExpense(Expense expense)
         {
@@ -54,7 +54,7 @@ namespace Dollar_Wise.Services
             await _database.DeleteAsync(expense);
         }
 
-        // CRUD operations for Income
+        // CRUD Income
 
         public async Task AddIncome(Income income)
         {
@@ -76,7 +76,7 @@ namespace Dollar_Wise.Services
             await _database.DeleteAsync(income);
         }
 
-        // CRUD operations for Goal
+        // CRUD Goal
 
         public async Task AddGoal(Goal goal)
         {
@@ -98,7 +98,7 @@ namespace Dollar_Wise.Services
             await _database.DeleteAsync(goal);
         }
 
-        // CRUD operations for RecurringPayment
+        // CRUD RecurringPayment
 
         public async Task AddRecurringPayment(RecurringPayment recurringPayment)
         {
@@ -120,7 +120,7 @@ namespace Dollar_Wise.Services
             await _database.DeleteAsync(recurringPayment);
         }
 
-        // CRUD operations for RecurringPaymentExpenseLink
+        // CRUD RecurringPaymentExpenseLink
 
         public async Task AddRecurringPaymentExpenseLink(RecurringPaymentExpenseLink link)
         {

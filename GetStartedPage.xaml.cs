@@ -29,7 +29,6 @@ namespace Dollar_Wise
 
         private async Task StartTextAnimation()
         {
-            // text animation
             string welcomeText = "Welcome to Dollar Wise!";
             foreach (char letter in welcomeText)
             {
@@ -51,7 +50,7 @@ namespace Dollar_Wise
 
         protected override bool OnBackButtonPressed()
         {
-            // prevent back button functionality
+            //prevent back button functionality
             return true;
         }
 

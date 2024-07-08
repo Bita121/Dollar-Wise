@@ -6,7 +6,6 @@
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="#410F3C">
 
-    <!-- Define the flyout menu -->
     <FlyoutItem Title="Home" Icon="home.png">
         <ShellContent
             Title="Home"

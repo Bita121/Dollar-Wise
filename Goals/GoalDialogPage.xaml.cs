@@ -1,7 +1,7 @@
-using System;
+
 using Dollar_Wise.Models;
 using Dollar_Wise.Services;
-using Microsoft.Maui.Controls;
+
 
 namespace Dollar_Wise.Goals;
 
@@ -19,7 +19,7 @@ public partial class GoalDialogPage : ContentPage
 
     private async void SaveGoal_Clicked(object sender, EventArgs e)
     {
-        // prefill the data
+        //prefill data
         var name = NameEntry.Text;
         var targetAmount = TargetAmountEntry.Text;
         var targetDate = DatePicker.Date;
@@ -51,7 +51,6 @@ public partial class GoalDialogPage : ContentPage
             return;
         }
 
-        // create goal object
         var goal = new Goal
         {
             GoalName = name,
@@ -59,7 +58,7 @@ public partial class GoalDialogPage : ContentPage
             TargetDate = targetDate,
             Priority = priority
         };
-        // save goal
+
         await _dataService.AddGoal(goal);
         await Navigation.PopAsync();
     }

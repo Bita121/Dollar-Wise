@@ -57,8 +57,6 @@ namespace Dollar_Wise
                     {
                         goal.AddMoney(amount);
                         await _dataService.UpdateGoal(goal);
-
-                        // Update the specific goal in the list
                         var index = _allGoals.FindIndex(g => g.Id == goal.Id);
                         if (index >= 0)
                         {

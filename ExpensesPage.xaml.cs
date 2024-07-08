@@ -26,7 +26,7 @@ namespace Dollar_Wise
             {
                 _allExpenses = await _dataService.GetExpenses();
 
-                // Apply filters if they were previously selected
+                //apply filters if they were previously selected
                 if (_isCategoryFilterVisible && CategoryPicker.SelectedItem is string selectedCategory)
                 {
                     _allExpenses = _allExpenses.Where(expense => expense.Category == selectedCategory).ToList();
@@ -41,7 +41,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Log the exception
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 await DisplayAlert("Error", "Failed to load expenses. Please try again later.", "OK");
@@ -113,7 +112,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Log the exception
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 DisplayAlert("Error", "Failed to apply filter. Please try again later.", "OK");
@@ -135,7 +133,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Log the exception
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 DisplayAlert("Error", "Failed to reset filter. Please try again later.", "OK");
@@ -151,7 +148,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Log the exception
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 await DisplayAlert("Error", "Failed to add expense. Please try again later.", "OK");
@@ -169,7 +165,7 @@ namespace Dollar_Wise
                     await Navigation.PushAsync(new ExpenseDialogPageEdit(expense));
                     LoadExpenses();
 
-                    // Reapply filters if they were previously applied
+                    //reapply filters if they were previously applied
                     if (ApplyFilterButton.CommandParameter is (string selectedCategory, DateTime startDate, DateTime endDate))
                     {
                         CategoryPicker.SelectedItem = selectedCategory;
@@ -181,7 +177,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Log the exception
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 await DisplayAlert("Error", "Failed to edit expense. Please try again later.", "OK");
@@ -203,7 +198,7 @@ namespace Dollar_Wise
                         await _dataService.DeleteExpense(expense);
                         LoadExpenses();
 
-                        // Reapply filters if they were previously applied
+                        //reapply filters if they were previously applied
                         if (ApplyFilterButton.CommandParameter is (string selectedCategory, DateTime startDate, DateTime endDate))
                         {
                             CategoryPicker.SelectedItem = selectedCategory;
@@ -216,7 +211,6 @@ namespace Dollar_Wise
             }
             catch (Exception ex)
             {
-                // Log the exception
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 await DisplayAlert("Error", "Failed to delete expense. Please try again later.", "OK");

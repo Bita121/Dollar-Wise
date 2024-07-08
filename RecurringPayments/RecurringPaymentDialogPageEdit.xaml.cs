@@ -33,10 +33,7 @@ namespace Dollar_Wise.RecurringPayments
 
         private void GenerateCategoryGrid()
         {
-            // clear existing grid
             CategoryGrid.Children.Clear();
-
-            // define categories with photos
             var categories = new Dictionary<string, string>
             {
                 { "Food", "food_icon.png" },
@@ -47,7 +44,6 @@ namespace Dollar_Wise.RecurringPayments
                 { "Other", "other_icon.png" }
             };
 
-            // add category icons to the grid
             int column = 0;
             int row = 0;
             foreach (var category in categories)

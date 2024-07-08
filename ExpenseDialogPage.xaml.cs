@@ -49,7 +49,6 @@ namespace Dollar_Wise
                 return;
             }
 
-            // create the object
             var expense = new Expense
             {
                 Name = name,
